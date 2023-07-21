@@ -1,0 +1,68 @@
+[Title]
+Sebuah phantom berbentuk silinder yang terbuat dari H2O ditembak dengan
+proyektir proton dengan energi 290 MeV. 
+
+[Parameters]
+icntl = 0
+maxcas = 10
+maxbch = 10
+
+[Source]
+s-type 	= 1
+proj 	= proton 
+dir = 1.0
+r0 	= 2.5
+z0 	= -10
+z1 	= -10
+e0 	= 290
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 so 500 	$ Bola dengan di titik (0,0,0) dengan r = 500 cm
+15 cz 10 	$ Silinder dengan r = 10 cm
+16 pz 0 	$ pz itu bidang yang memotong sumbu z pada z tertentu
+17 pz 50
+
+[Cell]
+100 0 -10 #103 	$ Maksud 0 = void
+101 -1 10 		$ Maksud -1 = outer void
+103 1 -1.0 -15 16 -17
+
+[T-track]
+mesh = xyz
+
+x-type = 2
+xmin = -20
+xmax = 20
+nx = 200
+
+y-type = 1
+ny = 1
+-5.0 5.0
+
+
+z-type = 2
+zmin = -10
+zmax = 60
+nz = 200
+
+$t-type = 2
+$tmin = 0.0
+$tmax = 5.0
+$nt = 50
+
+part = all
+e-type = 1
+ne = 1
+0.0 1000.0
+
+unit = 1
+axis = xz
+file = kuliah01.out
+title = Keluaran lintasan partikel dengan [T-track] Tally
+gshow = 1
+epsout = 1
+
+[End]

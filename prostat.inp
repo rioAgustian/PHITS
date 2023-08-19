@@ -1,0 +1,428 @@
+$ Perkenalkan, nama saya adalah Rio Agustian Gilang Fernando, Fisika, Universitas Negeri Semarang
+$ Saat kode ini saya susun, saya sedang menjalani program internship di Badan Risat dan Inovasi Nasional
+$ atau disingkat denga BRIN. Judul penelitian magang saya adalah "Analisis Dosis BNCT pada Kanker Prostat
+$ dengan Menggunakan Program PHITS". Khusus kode ini hanya dibatasi pada membuat geometri kanker prostat.
+$ Phantom ORNL dapat diakses di : http://www.pmf.kg.ac.rs/radijacionafizika/InputFiles.html
+$ Material jaringan dari PNNL dapat diakses di : https://www.pnnl.gov/main/publications/external/technical_reports/PNNL-15870Rev1.pdf
+$ Material jaringan dari ICRP dapat diakses di : https://www.icrp.org/publication.asp?id=icrp%20publication%20110
+[Title]
+Geometri kanker prostat dan organ di sekitarnya.
+
+[Parameters]
+icntl  = 0 		$ 0=menghitung; 5=cek sumber radiasi; 8=cek geometri
+maxcas = 10
+maxbch = 10 	$ total partikel = maxcas x maxbch
+
+[Source]
+s-type = 1   	$ tipe silinder
+proj = neutron          
+dir  = 1    	$ dir = cos theta. Jika dir = 1, maka theta = 0 derajat
+r0 = 2.5      
+z0 = 0.0         
+z1 = 0.0          
+e0 =  80    	$ energi dari proyektil [MeV/u]
+trcl = 1 		$ trcl itu berhubungan dengan [Transform]. Gunanya untuk melakukan transformasi titik
+
+[Material]
+
+mat[1] $ udara, 0.001205 g/cm^3
+C  -0.000124
+N  -0.755268
+O  -0.231781 
+Ar -0.012827 
+
+mat[2] $ kulit, 1.10 g/cm^3
+H  -0.100588
+C  -0.228250
+N  -0.046420
+O  -0.619002
+Na -0.000070
+Mg -0.000060
+P  -0.000330
+S  -0.001590
+Cl -0.002670
+K  -0.000850
+Ca -0.000150
+Fe -0.000010
+Zn -0.000010
+
+mat[3] $ jaringan lunak, 1.00 g/cm^3
+H	-0.104472
+C	-0.232190
+N	-0.024880
+O	-0.630238
+Na	-0.001130
+Mg	-0.000130
+P	-0.001330
+S	-0.001990
+Cl	-0.001340
+K	-0.001990
+Ca	-0.000230
+Fe	-0.000050
+Zn	-0.000030
+
+mat[4] $ genital, 1.00 g/cm^3
+H	-0.104472
+C	-0.232190
+N	-0.024880
+O	-0.630238
+Na	-0.001130
+Mg	-0.000130
+P	-0.001330
+S	-0.001990
+Cl	-0.001340
+K	-0.001990
+Ca	-0.000230
+Fe	-0.000050
+Zn	-0.000030
+
+Mat[5] $ testis, 1.04 g/cm^3
+H	-0.104166
+C	-0.092270
+N	-0.019940
+O	-0.773884
+Na	-0.002260
+Mg	-0.000110
+P	-0.001250
+S	-0.001460
+Cl	-0.002440
+K	-0.002080
+Ca	-0.000100
+Fe	-0.000020
+Zn	-0.000020
+
+mat[6] $ kandung kemih, 1.040 g/cm^3
+H	-0.105
+C	-0.096
+N	-0.026
+O	-0.761
+Na	-0.002
+P	-0.002
+S	-0.002
+Cl	-0.003
+K	-0.003
+
+mat[7] $ pelvis, 1.123 g/cm^3
+H	-0.094
+C	-0.360
+N	-0.025
+O	-0.454
+Na	-0.002	
+P	-0.021
+S	-0.003
+Cl	-0.002
+K	-0.001
+Ca	-0.038
+
+mat[8] $ femur, 1.124 g/cm^3
+H	-0.094
+C	-0.385
+N	-0.022
+O	-0.430
+Na	-0.002
+P	-0.022
+S	-0.003
+Cl	-0.001
+K	-0.000
+Ca	-0.041
+
+mat[9] $ prostat, 1.030 g/cm^3
+H	-0.104
+C	-0.231
+N	-0.028
+O	-0.627
+Na	-0.001
+P	-0.002
+S	-0.003
+Cl	-0.002
+K	-0.002
+
+mat[10] $ PTV, 1.030 g/cm^3
+H	-0.104472
+C	-0.232190
+N	-0.024880
+O	-0.630238
+Na	-0.001130
+Mg	-0.000130
+P	-0.001330
+S	-0.001990
+Cl	-0.001340
+K	-0.001990
+Ca	-0.000230
+Fe	-0.000050
+Zn	-0.000030
+
+mat[11] $ CTV, 1.200 g/cm^3
+H	-0.099
+C	-0.269
+N	-0.045
+O	-0.569
+P	-0.018
+
+mat[12] $ GTV, 1.200 g/cm^3
+H	-0.099
+C	-0.269
+N	-0.045
+O	-0.569
+P	-0.018
+
+mat[13] $ Usus besar, 1.04 g/cm^3
+H	-0.1
+C	-0.222
+N	-0.022
+O	-0.644
+Na	-0.001
+P	-0.002
+S	-0.003
+Cl	-0.001
+K	-0.004
+Ca	-0.001
+
+
+mat[14] $ Usus kecil, 1.04 g/cm^3
+H	-0.1
+C	-0.222
+N	-0.022
+O	-0.644
+Na	-0.001
+P	-0.002
+S	-0.003
+Cl	-0.001
+K	-0.004
+Ca	-0.001
+
+[Mat Name Color]
+Mat 	Name 			Color
+1		Udara			cyan
+2 		Kulit			pastelpink
+3 		Jaringan-Lunak	yellow
+4 		Genital 		cyanblue
+5 		Testis 			blue
+6 		Kandung-Kemih	orange
+7		Pelvis 			pastelblue
+8		Tulang-Paha		pastelblue
+9		Prostat 		green
+10		PTV				pink
+11		CTV 			red
+12 		GTV				darkred
+13		Usus-Besar		mossgreen
+14		Usus-Halus		violet
+
+[Cell]
+$ id cell + id material + densitas + surface
+
+ 10  1 -0.001205  #999 #20 #31 #32 #40 #50 #60 #70 #80 #90 #100 #110 #120 #130 #140 $ udara
+ 20  2 -1.04 (-5 532 -332 132):(232 -432 -5 532):(632 -532 -332):(632 -532 -432):(-131 231 5 -331):(-131 331 -431) $ kulit
+ 31  3 -1.04 (-231 5 -331) #40 #50 #60 #70 #80 #90 #100 #110 #120 #130 #140 $ badan
+ 32  3 -1.04 ((-132 532 -5):(-232 532 -5)) #80 #100 $ kaki
+ 40  4 -1.04 ((440 -5)(540 -340)(-640 240)(332 432)) 150 250 #100 #110 $ genital
+ 50  5 -1.04 (-150):(-250) #100 #110 $ testis
+ 60  6 -1.04 -160 #100 #110  $ kandung kemih 
+ 70  7 -1.40 ((-270 170 -570 670 5 -470):(170 -270 670 470 -370)) #130 $ pelvis
+ 80  8 -1.40 (-180 532 -5):(532 -5 -280) $ tulang kaki
+ 90  9 -1.03 -190  #100 #110 #120 	$ prostat
+100 10 -1.03 -1100 #110 #120 #20 	$ PTV
+110 11 -1.20 -1110 #120 	 		$ CTV
+120 12 -1.20 -1120 			 		$ GTV 
+130 13 -1.04 (-1130 3130 -4130):(-5130 -7130 8130):(-9130 11130 -4130):(-12130  -11130 16130):(-14130 -16130 5) #100 $ usus besar
+140 14 -1.04 ((-1140 2140 -3140 4130 -5140):(-1140 1130 2140 -3140 4140 -4130)) #130 $ usus halus
+999 -1  199 $ outer void
+
+[Surface]
+$ fromat umum id surface: indeks + id cell (preferensi saya)
+$ sintaks: id surface + geoemtri + variabel
+$ masing-maisng geometri memiliki variabel tersendiri. Cek manual bagian Surface untuk lebih lengkap 
+
+$ outer void
+199 so 1000
+
+5 pz 0.0
+
+$  kaki
+132 gq 1 1 0 0 0 -0.2 -20 0 0.04 3.96 $ kaki kiri
+232 gq 1 1 0 0 0  0.2  20 0 0.04 3.96 $ kaki kanan
+332 gq 1 1 0 0 0 -0.2 -20 0 0.00 0.00 $ kulit kaki kiri
+432 gq 1 1 0 0 0  0.2  20 0 0.00 0.00 $ kulit kaki kanan
+532 pz -7 $ mengatur panjang kaki
+632 pz -7.2
+
+$ badan
+131 sq 100   400    0 0 0 0 -40000     0 0 0 $ kulit badan
+231 sq 96.04 392.04 0 0 0 0 -37651.521 0 0 0 $ geometri utama badan
+331 pz 30 $ mengatur tinggi 
+431 pz 30.0
+
+$ tulang kaki
+180 gq 1 1 0.00906872 0 0 -0.200501 -20 0 1.78571 87.75  $ kiri
+280 gq 1 1 0.00906872 0 0  0.200501  20 0 1.78571 87.75  $ kanan
+
+$ kandung kemih
+160 sq 142.988120 293.942933 293.942933 0 0 0 -3514.900218 0 -4.50 8  
+
+$ testis
+150 sq 11.9025 8.9401 3.8025 0 0 0 -20.115225 -1.30 -8 -2.30 $ kiri
+250 sq 11.9025 8.9401 3.8025 0 0 0 -20.115225  1.30 -8 -2.30 $ kanan
+
+$ pelvis
+170 sq 127.69 127.69 0 0 0 0 -16304.7361 0 -3.8 0 $ elips luar
+270 sq 144    144    0 0 0 0 -20736      0 -3   0 $ elips dalam
+370 pz 22 $ batas atas 
+470 pz 14 $ batas bawah 
+570 py  5 $ batas belakang
+670 py -3 $ batas depan
+
+$ genital
+140 p 0.80 1 0 0
+240 p 0 1 0.1 -10 $yz plane
+340 p 1 0 -0.1 10
+440 pz -4.8  
+540 p 1 0 0.1 -10 $xz plane
+640 py 0.0
+
+$ prostat
+190 sq 0.64935 0.64935 0.64935 0 0 0 -1 0 -4.5 2.93
+
+$ kanker
+1100 s 0 -4.5 2.93 3.24 $ PTV
+1110 s 0 -4.5 2.93 2.54 $ CTV
+1120 s 0 -4.5 2.93 1.54 $ GTV
+
+$ usus besar
+ 1130 sq 6.25 6.25 0 0 0 0 -39.0625 -8.50 -2.36 0 $ ULI- upper large intestine  1.ascending colon-wall
+ 2130 sq 3.20947225 3.20947225 0 0 0 0 -10.300712135 -8.5 -2.36 0 $ascending colon-contents
+ 3130 pz 14.45
+ 4130 pz 24.0 $end ac. col.
+ 5130 sq 0 2.25 6.25 0 0 0 -14.0625 0 -2.36 25.50  $ ULI 2.transverse colon-wall
+ 6130 sq 0 0.946729 3.892729 0 0 0 -3.68539433441 0 -2.36 25.50  $ transverse colon-contents
+ 7130 px  10.50
+ 8130 px -10.50
+ 9130 gq 0.282933 0.220415 0.00663757 0 0.0721253 -0.0288859 -4.541008 -0.628932 0.128904 17.669146  $LLI-lower large intestine 1. descending colon-wall
+10130 gq 0.556917 0.395554 0.0120398  0 0.129435  -0.056858  -8.938371 -1.128675 0.271613 35.669768  $descending colon-contents
+11130 pz 8.72
+12130 ty 3.0 0 8.72 5.72 1.57 1.57 $LLI 2. sigmoid colon -upper 
+13130 ty 3.0 0 8.72 5.72 0.91 0.91 
+14130 ty 3.0 0 0    3.0  1.57 1.57  $sigmoid colon -lower
+15130 ty 3.0 0 0    3.0  0.91 0.91  $sigmoid colon -lower
+16130 px 3.0
+
+$ usus kecil
+1140 sq 127.69 127.69 0 0 0 0 -16304.7361 0 -3.80 0  $small intestine
+2140 py -4.86
+3140 py 2.20
+4140 pz 17
+5140 pz 27   $end small intestin
+
+[Transform]
+$ Transformasi ini merotasi geometri source terhadap sumbu y sebesar 270 derajat
+$ Setelah dirotasi, titiknya dirubah ke (21, -4.5, 2.93)
+*tr1 21 -4.5 2.93  0 0 0  2 270  0 0  0 0  3
+
+[T-Track] 
+title = Tampang membujur x-z (coronal)
+mesh  =  xyz            
+x-type = 2            
+nx 	 =  100            
+xmin = -30           
+xmax =  30         
+
+y-type = 1        
+ny = 1
+-5 -4
+   
+z-type =  2            
+nz   =  100.0          
+zmin =  -20.0          
+zmax =   40.0
+
+t-type = 1                    
+nt = 1            
+0.0  1.0e+6
+
+$t-type = 2            
+$nt   =  10.0          
+$tmin =   0.0          
+$tmax =  10.0          
+
+part =  all      
+e-type = 1            
+ne = 1            
+0.0 1000.0
+unit = 1            	# unit is [1/cm^2/source]
+
+axis = xz              	# sumbu dari keluaran
+file = prostat_xz.out  	# nama file
+gshow = 3             	# 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+epsout = 1            	# (D=0) generate eps file by ANGEL
+
+[T-Track]
+title = Tampang membujur x-z (sagittal)
+mesh =  xyz            
+
+x-type = 1        
+nx = 1
+-0.5 0.5
+   
+y-type = 2           
+ny	 =  100           
+ymin = -20        
+ymax = 30
+
+z-type =  2           
+nz   =  100.0         
+zmin =  -20.0         
+zmax =   40          
+
+t-type = 1       
+nt = 1           
+0.0 1.0e+6
+
+$t-type = 2   
+$nt   =  10.0 
+$tmin =   0.0         
+$tmax =  10.0           
+
+part =  all      
+e-type = 1             
+ne = 1             
+0.0 1000.0
+unit = 1            	# unit is [1/cm^2/source]
+
+axis = yz           	# sumbu dari keluaran
+file = prostat_yz.out  	# nama file
+gshow = 3            	# 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+epsout = 1            	# (D=0) generate eps file by ANGEL
+
+[T-Track]
+title = Tampang lintang x-y (axial)
+mesh =  xyz            
+
+x-type =    2             
+nx =   100             
+xmin =  -25.            
+xmax =   30.            
+
+y-type =    2             
+ny =   100             
+ymin =  -21.            
+ymax =   21.           
+
+z-type =    1             
+nz =    1             
+2.91 2.95 
+
+e-type =    1            
+ne =    1             
+0.0  5000.0
+
+t-type =    1             
+nt =    1             
+0.0  1.0e+6
+
+unit =    1            # unit is [1/cm^2/source]
+axis =   xy            # sumbu dari keluaran
+file = prostat_xy.out  # nama file
+part =  all      
+gshow =    3           # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+epsout =    1          # (D=0) generate eps file by ANGEL
+
+[End]

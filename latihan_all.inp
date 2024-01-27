@@ -1,0 +1,3476 @@
+KODE PROGRAM PHITS LECTURE 1-3
+Rio Agustian Gilang Fernando, 4211420004, Fisika
+FMIPA Universitas Negeri Semarang
+
+LECTURE 1
+Lecture 1 Exercise 1
+[Title]
+Minimized input file for lectures
+
+[Parameters]
+icntl = 8
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+proj = proton
+dir = 1
+r0 = 2.5
+z0 = -10
+z1 = -10
+e0 = 290
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 so 20
+
+[Cell]
+100 1 -1 -10
+101 -1 10
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz= 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 1
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 2
+
+[Title]
+Minimized inout file for lecture
+
+[Parameters]
+icntl = 8
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+proj = proton
+dir = 1
+r0 = 0
+z0 = 0
+z1 = 0
+e0 = 150
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 so 20
+11 so 5
+
+[Cell]
+100 1 -1 -10
+101 -1 10
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 1
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out 
+title = Track detection using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 3
+
+[Title]
+Minimized input file for lecture
+
+[Parameters]
+icntl = 8
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+proj = proton
+dir = 1
+r0 = 0
+z0 = 0
+z1 = 0
+e0 = 150
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 11 5
+
+[Cell]
+100 1 -1 -10 #102 #103
+101 -1 10
+102 1 -1 -11
+103 1 -1 -12
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 1
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 4
+
+[Title]
+Minimized input file for lecture
+
+[Parameters]
+icntl = 8
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+proj = proton 
+dir = 1
+r0 = 0
+z0 = 0
+z1 = 0
+e0 = 150
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 8 5
+
+[Cell]
+100 1 -1.0 -10 #102 #103 #104
+101 -1 10
+102 1 -1.0 -11 12
+103 1 -1.0 -12 11
+104 1 -1.0 -11 -12
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 1
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 5
+
+[Title]
+Minimized input file for lecture
+
+[Parameters]
+icntl = 8
+maxcas = 8
+maxbch = 2
+
+[Source]
+s-type = 1
+proj = proton
+dir = 1
+r0 = 0
+z0 = 0
+z1 = 0
+e0 = 150
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 8 5
+13 rpp -5 5 -5 5 -16 -6
+14 px 3
+
+[Cell]
+100 1 -1.0 -10 #102 #103 #104 #105
+101 -1 10
+102 1 -1.0 -11 12 -14
+103 1 -1.0 -12 11
+104 1 -1.0 -11 -12
+105 1 -1.0 -13
+
+[t-track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 1
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track deetction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 6
+
+[Title]
+Minimized input file for lecture
+
+[Parameters]
+icntl = 8
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+proj = proton
+dir = 1
+r0 = 0
+z0 = 0
+z1 = 0
+e0 = 150
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 8 5
+13 rpp -5 5 -5 5 -16 -6
+14 px 3
+15 cz 1
+16 pz -19
+17 pz 19
+
+[cell]
+100 1 -1.0 -10 #102 #103 #104 #105 #106
+101 -1 10
+102 1 -1.0 -11 12 -14 #106
+103 1 -1.0 -12 11 #106
+104 1 -1.0 -11 -12 #106
+105 1 -1.0 -13 #106
+106 1 -1.0 -15 16 -17
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 1
+
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 7
+
+[Title]
+Minimized input file for lecture
+
+[Parameters]
+icntl = 8
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+proj = proton
+dir = 0
+r0 = 0
+z0 = 0
+z1 = 0
+e0 = 150
+
+[Material]
+mat[1] H 2 O 1
+mat[2] Cu 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+2 Copper darkred
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 8 5
+13 rpp -5 5 -5 5 -16 -6
+14 px 3
+15 cz 1
+16 pz -19
+17 pz 19
+
+[Cell]
+100 0 -10 #102 #103 #104 #105 #106
+101 -1 10 
+102 1 -1.0 -11 12 -14 #106
+103 1 -1.0 -12 11 #106
+104 1 -1.0 -11 -12 #106
+105 1 -1.0 -13 #106
+106 2 -8.93 -15 16 -17
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 1
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 8
+
+[Title] 
+Minimized input file for lectures
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source] 
+s-type = 1
+proj = proton
+dir = 1
+r0 = 0 
+z0 = 0
+z1 = 0
+e0 = 150
+
+[Material]
+mat[1] H 2 O 1
+mat[2] Cu 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+2 Copper darkred
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 8 5
+13 rpp -5 5 -5 5 -16 -6
+14 px 3
+15 cz 1
+16 pz -19
+17 pz 19
+
+[Cell]
+100 0 -10 #102 #103 #104 #105 #106
+101 -1 10
+102 1 -1.0 -11 12 -14 #106
+103 1 -1.0 -12 11 #106
+104 1 -1.0 -11 -12 #106
+105 1 -1.0 -13 #106
+106 2 -8.93 -15 16 -17
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 10
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using [T-track] Tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 9
+
+[Title]
+Minimized input file for lecture
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+proj = proton
+dir = 1
+r0 = 1
+z0 = 0
+z1 = 0
+e0 = 150
+
+[Material]
+mat[1] H 2 O 1
+mat[2] Cu 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+2 Copper darkred
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 8 5
+13 rpp -5 5 -5 5 -16 -6
+14 px 3
+15 cz 1
+16 pz -19
+17 pz 19
+
+[Cell]
+100 0 -10 #102 #103 #104 #105 #106
+101 -1 10
+102 1 -1.0 -11 12 -14 #106
+103 1 -1.0 -12 11 #106
+104 1 -1.0 -11 -12 #106
+105 1 -1.0 -13 #106
+106 2 -8.93 -15 16 -17
+
+[T-track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 10
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using pT-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 10
+
+[Title]
+Minimized input file for lecture
+
+[Parameters] 
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+
+[Source]
+s-type = 1
+proj = neutron
+dir = 1
+r0 = 1
+z0 = 0
+z1 = 0
+e0 = 100
+
+[material]
+mat[1] H 2 O 1
+mat[2] Cu 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+2 Copper darkred
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 8 5
+13 rpp -5 5 -5 5 -16 -6
+14 px 3
+15 cz 1
+16 pz -19
+17 pz 19
+
+[Cell]
+100 0 -10 #102 #103 #104 #105 #106
+101 -1 10 
+102 1 -1.0 -11 12 -14 #106
+103 1 -1.0 -12 11 #106
+104 1 -1.0 -11 -12 #106
+105 1 -1.0 -13 #106
+106 2 -8.93 -15 16 -17
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 10
+tmin = 0
+tmax = 1
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Exercise 11
+
+[Title]
+Minimized input file for lecture
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[source]
+s-type = 1
+proj = neutron
+dir = all
+r0 = 0
+z0 = 10
+z1 = 10
+e0 = 100
+
+[Material]
+mat[1] H 2 O 1
+mat[2] Cu 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+2 Copper darkred
+
+[Surface]
+10 so 500
+11 so 5
+12 sz 8 5
+13 rpp -5 5 -5 5 -16 -6
+14 px 3
+15 cz 1
+16 pz -19
+17 pz 19
+
+[Cell]
+100 0 -10 #102 #103 #104 #105 #106
+101 -1 10
+102 1 -1.0 -11 12 -14 #106
+103 1 -1.0 -12 11 #106
+104 1 -1.0 -11 -12 #106
+105 1 -1.0 -13 #106
+106 2 -8.93 -15 16 -17
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 200
+xmin = -20
+xmax = 20
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 20
+t-type = 2
+nt = 10
+tmin = 0
+tmax = 1
+part = all
+e-type = 1
+ne = 1
+0 1000
+unit = 1
+axis = xz
+file = track_xz.out
+title = Track detection using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 1 Homework
+
+[Title] Initial PHITS input file for homework
+
+[Parameters]
+icntl = 0
+maxcas = 10
+maxbch = 10
+
+[Source]
+s-type = 1
+proj = proton
+e0 = 290
+r0 = 2.5
+z0 = -10
+z1 = -10
+dir = 1
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 cz 10
+101 pz 0
+102 pz 50
+999 so 500
+
+[Cell]
+1 1 -1.0 -10 101 -102
+100 0 -999 #1
+101 -1 999
+
+[T-Track]
+title = Track detection using [T-Track] tally
+mesh = xyz
+x-type = 2
+xmin = -20
+xmax = 20
+nx = 200
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+zmin = -20
+zmax = 20
+nz = 200
+e-type = 1
+ne = 1
+0 10000
+unit = 1
+axis = xz
+file = track_xz.out
+gshow = 1
+epsout = 1
+part = all
+
+[T-Deposit]
+title = Deposit energy in water phantom
+mesh = r-z
+x0 = 0
+y0 = 0
+r-type = 1
+nr = 1
+0 10
+z-type = 2
+zmin = -10
+zmax = 10
+nz = 20
+unit = 0
+output = dose
+axis = z
+file = deposit.out
+epsout = 1
+
+[End]
+LECTURE 2
+Lecture 2 Exercise 1
+[Title] 
+Input file for lecture about tally
+
+[Parameters]
+icntl = 8
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 25
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 25
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1.0e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 25
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 50
+zmin = -20
+zmax = 80
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1.0e+9
+unit = 1
+axis = xz
+file = track_xz.out
+part = all
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 2
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 8
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1.0
+e0 = 250
+proj = 12c
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx= 25
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 25
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detectio nin xyz mesh
+mesh = xyz
+x-type = 2
+nx = 25
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 50
+zmin = -20
+zmax = 80
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xz
+file = track_xz.out
+part = all
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 3
+
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 25
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 25
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 25
+xmin = -25 
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 50
+zmin = -20
+zmax = 20
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xz
+file = track_xz.out
+part = all
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 4
+
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection using [T-Track] tally
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz 
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 80
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xz
+file = track_xz.out
+part = all
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 5
+
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0 
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 80
+e-type = 1
+ne = 1
+0 5000
+t-type = 2
+nt = 5
+$ 0 1e+9
+tmin = 0
+tmax = 5
+unit = 1
+axis = xz
+file = track_xz.out
+part = all
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 6
+
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 80
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+$ tmin = 0
+$ tmax = 5
+unit = 1
+axis = xz
+file = track_xz.out
+part = 12C proton neutron
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 7
+
+[Title]
+Input file for lecture about tally
+
+[parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz 
+x-type = 2
+nx = 1
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 1
+zmin = -20
+zmax = 80
+e-type = 2
+ne = 100
+$ 0 5000
+emin = 0
+emax = 5000
+t-type = 1
+nt = 1
+0 1e+9
+$ tmin = 0
+$ tmax = 5
+unit = 1
+axis = eng
+file = track_eng.out
+part = 12C proton neutron
+gshow = 3
+epsout = 1
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 1
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 1
+zmin = -20
+zmax = 80
+e-type = 3
+ne = 100
+$ 0 5000
+emin = 1
+emax = 5000
+t-type = 1
+nt = 1
+0 1e+9
+$ tmin = 0
+$ tmax = 5
+unit = 1
+axis = eng
+file = track_eng.out
+part = 12C proton neutron
+gshow = 3
+epsout = 1
+[End]
+Lecture 2 Exercise 8
+
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 9
+
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = reg
+reg = 101 110
+$x-type = 2
+$nx = 1
+$xmin = -25
+$xmax = 25
+$y-type = 1
+$ny = 1
+$-5 5
+$z-type = 2
+$nz = 1
+$zmin = -20
+$zmax = 80
+e-type = 3
+ne = 100
+$0 5000
+emin = 1
+emax = 5000
+t-type = 1
+nt = 1
+0 1e+9
+$tmin = 0
+$tmax = 5
+unit = 1
+axis = eng
+file = track_eng.out
+part = 12C proton neutron
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 10
+
+[Title]
+Input file for lacture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25 
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = reg
+reg = 101 110
+samepage = reg
+$ x-type = 2
+$ nx = 1
+$ xmin = -25
+$ xmax = 25
+$ y-type = 1
+$ ny = 1
+$ -5 5
+$ z-type = 2
+$ nz = 1
+$ zmin = -20
+$ zmax = 80
+e-type = 3
+ne = 100
+$ 0 5000
+emin = 1
+emax = 5000
+t-type = 1
+nt = 1
+0 1e+9
+$ tmin = 0
+$ tmax = 5
+unit = 1
+axis = eng
+file = track_eng.out
+part = 12C proton neutron
+gshow = 3
+epsout = 1
+
+[End]
+Lecture 2 Exercise 11
+
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = reg
+reg = 101 110
+samepage = reg
+$x-type = 2
+$nx = 1
+$xmin = -25
+$xmax = 25
+$y-type = 1
+$ny = 1
+$-5 5
+$z-type = 2
+$nz = 1
+$zmin = -20
+$zmax = 80
+e-type = 3
+ne = 100
+$0 5000
+emin = 1
+emax = 5000
+t-type = 1
+nt = 1
+0 1e+9
+$tmin = 0
+$tmax = 5
+unit = 1
+axis = eng
+file = track_eng.out
+part = 12C proton neutron
+gshow = 3
+epsout = 1
+
+[T-Deposit]
+title = energy deposition in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 80
+unit = 1
+material = all
+output = dose
+axis = xz
+file = deposit.out
+part = all
+gshow = 1
+epsout = 1
+
+[End]
+Lecture 2 Exercise 12
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = reg
+reg = 101 110
+samepage = reg
+
+$x-type = 2
+$nx = 1
+$xmin = -25
+$xmax = 25
+$y-type = 1
+$ny = 1
+$-5 5
+$z-type = 2
+$nz = 1
+$zmin = -20
+$zmax = 80
+e-type = 3
+ne = 1000
+$0 5000
+emin = 1
+emax = 5000
+t-type = 1
+nt = 1
+0 1e+9
+$tmin = 0
+$tmax = 5
+unit = 1
+axis = eng
+file = track_eng.out
+part = 12C proton neutron
+gshow = 3
+epsout = 1
+
+[T-Deposit]
+title = Energy deposition in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 80
+unit = 0
+material = all
+output = dose
+axis = xz
+file = deposit.out
+part = all
+gshow = 1
+epsout = 1
+
+[End]
+Lecture 2 Exercise 13
+
+[Title]
+Input file for lecture about tally
+
+[Parameters]
+icntl = 0
+maxcas = 50
+maxbch = 2
+
+[Source]
+s-type = 1
+z0 = -10
+z1 = -10
+r0 = 2.5
+dir = 1
+e0 = 250
+proj = 12C
+
+[Material]
+mat[1] H 2 O 1
+
+[Mat Name Color]
+mat name color
+1 Water pastelblue
+
+[Surface]
+10 so 500
+11 cz 10
+12 pz 0
+13 pz 50
+
+[Cell]
+100 -1 10
+101 1 -1.0 -11 12 -13
+110 0 -10 #101
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = xyz
+x-type = 2
+nx = 100
+xmin = -25
+xmax = 25
+y-type = 2
+ny = 100
+ymin = -25
+ymax = 25
+z-type = 1
+nz = 1
+-5 5
+e-type = 1
+ne = 1
+0 5000
+t-type = 1
+nt = 1
+0 1e+9
+unit = 1
+axis = xy
+file = track_xy.out
+part = all
+gshow = 3
+epsout = 1
+
+[T-Track]
+title = Track detection in xyz mesh
+mesh = reg
+reg = 101 110
+samepage = reg
+
+$x-type = 2
+$nx = 1
+$xmin = -25
+$xmax = 35
+$y-type = 1
+$ny = 1
+$-5 5
+$z-type = 2
+$nz = 1
+$zmin = -20
+$zmax= 80
+e-type = 3
+ne = 100
+$ 0 5000
+emin = 1
+emax = 5000
+t-type = 1
+nt = 1
+0 1e+9
+$tmin = 0
+$tmax = 5
+unit = 1
+axis = eng
+file = track_eng.out
+part = 12C proton neutron
+gshow = 3
+epsout = 1
+
+[T-Deposit]
+title = Energy deposition in xyz mesh
+mesh = r-z
+$nx = 100
+$x-type = 2
+$xmin = -25
+$xmax = 25
+r-type = 1
+nr = 1
+0 10
+z-type = 2
+nz = 200
+zmin = -20
+zmax = 80
+unit = 0
+material = all
+output = dose
+axis = z
+file = deposit.out
+part = all
+gshow = 1
+epsout = 1
+
+[End]
+ 
+Lecture 2 Homework
+
+[Title]
+Initial PHITS input file for homework
+
+[Parameters]
+icntl = 0
+maxcas = 10
+maxbch = 10
+
+[Source]
+s-type = 1
+proj = proton
+e0 = 290
+r0 = 2.5
+z0 = -10
+z1 = -10
+dir = 1
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 cz 10
+101 pz 0 
+102 pz 50
+999 so 500
+
+[Cell]
+1 1 -1.0 -10 101 -102
+100 0 -999 #1
+101 -1 999
+
+[T-Track]
+title = Track detection using [T-Track] tally
+mesh = xyz
+x-type = 2
+xmin = -20
+xmax = 20
+nx = 200
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+zmin = -20
+zmax = 70
+nz = 200
+e-type = 1
+ne = 1
+0 10000
+unit = 1
+axis = xz
+file = track_xz.out
+gshow = 1
+epsout = 1
+part = proton neutron
+
+[T-Deposit]
+title = Deposit energy in water phantom 
+mesh = r-z 
+x0 = 0
+y0 = 0
+r-type = 1
+nr = 2
+0 2.5 10
+z-type = 2
+zmin = -10
+zmax = 60
+nz = 100
+unit = 0
+output = dose
+axis = z
+file = deposit.out
+epsout = 1
+samepage = r
+
+[End]
+
+LECTURE 3
+Lecture 3 Exercise 1
+[Title]
+Input file untuk kuliah tentang [parameter] section
+
+[Parameters]
+icntl = 5
+maxcas = 100
+maxbch = 10
+
+set: c1[25]
+
+[Source]
+totfact = 1.0
+s-type = 2
+proj = proton
+e0 = 150.0
+x0 = -c1
+x1 = c1
+y0 = -c1 
+y1 = c1
+z0 = -30
+z1 = 30
+dir = 1.0
+
+infl: {onion.inp}[1-40]
+$ infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70 $ (D = 80.0) eye point theta (degree) dari z-axis
+e-phi = 20 $ (D = 140.0) eye point phi (degree) dari x-axis
+e-dst = 80 $ (D = w-dst*10) eye point distance from origin
+l-the = 20 $ (D = e-the) light point theta from z-axis
+l-phi = 0 $ (D = e-phi) light pont ohi from x-axis
+l-dst = 100 $ (D = e-dst) light point distance from origin
+w-wdt = 50 $ (D = 100) width of window (cm)
+w-hgt = 50 $ (D = 100) height of window (cm)
+w-dst = 25 $ (D = 200) window distance from origin 
+heaven = z $ (D = y) direction to heaven
+line = 1 $ (D = 0) 0:surface_mat, 1:+region
+shadow = 2 $ (D = 0) 0:no, 1:shadow
+resol = 1 $ (D = 1) resolution of 3dshow
+file = 3dshow.out $ file name of output
+title = Check onion structure using [T-3dshow] tally
+epsout = 1 $ (D = 0) generate eps file by ANGEL 
+box = 1 $ (D = 0) number of boxes
+box 0 0 0 
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton 
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out
+title  = Check source direction using [T-track] Tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg
+reg = 101 102 103 104 105
+file volume.out
+s-type = 2
+x0 = -c1
+x1 = c1 
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+
+[T-Deposit] off
+title = Depositiom energy in reg mesh
+mesh = reg
+reg = 101 102 103 104 105
+unit = 0
+material = all
+output dose
+axis = reg
+file = deposit.out
+part = all
+gshow = 1
+
+[End]
+Lecture 3 Exercise 2
+
+[Title]
+Input file for lecture about [Parameters] section
+
+[Parameters]
+icntl = 14
+maxcas = 100
+maxbch = 10
+
+set: c1[25]
+
+[Source]
+totfact  =1
+s-type = 2
+proj = proton
+e0 = 150
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+dir = 1
+
+infl: {onion.inp}[1-40]
+$ infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-phi = 0
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 25
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structures using [T-3Dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0 
+0 100 0 100
+
+[T-Track]
+mesh= xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+zmin = -35
+zmax = 35
+part = proton
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out 
+title = Check source direction using [T-Track] Tally
+gshow = 3
+spesout = 1
+
+[T-Volume]
+mesh = reg
+reg = 101 102 103 104 104
+file = volume.out
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+
+[T-Deposit]
+title = deposition energy in reg mesh
+mesh = reg
+reg  = 101 102 103 104 105
+unit = 0
+material = 1ll
+output = dose
+axis = reg
+file = deposit.out 
+part = all
+gshow = 1
+
+[End]
+Lecture 3 Exercise 3
+
+[Title]
+Input file for lecture about [parameters] section
+
+[Parameters]
+icntl = 14
+maxcas = 10000
+maxbch = 10
+
+set: c1[25]
+
+[Source]
+totfact = 1.0
+s-type = 2
+proj = proton
+e0 = 150
+x0 = -c1
+x1= c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1= -30
+
+infl: {onion.inp}[1-40]
+$ infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the  = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-phi = 0
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 25
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure using [T-3dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton 
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out
+title = Check source direction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg
+reg = 101 102 103 104 105 
+file = volume.out
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+
+[T-Deposit] off
+title = Deposition energy in reg mesh
+mesh = reg
+reg = 101 102 103 104 105
+unit = 0
+material = all
+output = dose
+axis = reg
+file = deposit.out
+part = all
+gshow = 1
+
+[End]
+Lecture 3 Exercise 4
+[Title] 
+input file for lecture about [parameters] section
+
+[Parameters]
+icntl = 14
+maxcas = 10000
+maxbch = 10
+istdev = -1
+
+set: c1[25]
+
+[Source]
+totfact = 1.0
+s-type = 2
+proj = proton
+e0 = 150
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+dir = 1
+
+infl: {onion.inp}[1-40]
+$ infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-phi = 0
+l-dst = 80
+w-wdt = 50
+w-hgt = 50
+w-dst = 25
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure using [T-3Dshow] tallt
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton
+e-type = 1
+ne = 1
+0 200
+unit = 1 axis = xz
+file = track_xz.out
+title = Chechk source direction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg
+reg = 101 102 103 104 105
+file = volume.out 
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+
+[T-deposit]
+title = Deposition energy in reg mesh 
+mesh = reg
+reg = 101 102 103 104 105
+unit = 0
+material = all output = dose
+axis = reg
+file = deposit.out
+part = all
+gshow = 1
+
+[End]
+Lecture 3 Exercise 5
+
+[Title]
+Input file for lecture about [parameters] section
+
+[Parameters]
+icntl = 14
+maxcas = 10000
+maxbch = 1000
+$ istdev = -1
+
+set: c1[25]
+
+[Source]
+totfact = 1
+s-type = 2
+proj = proton 
+e0 = 150
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+
+infl: {onion.inp}[1-40]
+$ infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+e-phi = 0
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 100
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure using [T-3dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz 
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out 
+title = Check  source direction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg
+reg = 101 102 103 104 105
+file = volume.out
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+stdcut = 0.01
+
+[T-Deposit] off
+title = Deposition energy in reg mesh
+mesh = reg
+reg = 101 102 103 104 105
+unit = 0
+material = all
+output = dose
+axis = reg
+file = deposit.out 
+part = all
+gshow = 
+
+[End]
+
+Lecture 3 Exercise 6
+
+[Title]
+Input file for lecture about [Parameters] section
+
+[Parameters]
+icntl = 0
+maxcas = 2000
+maxbch = 5
+$ istdev = -1
+
+set: c1[25]
+
+[Source]
+totfact = 1
+s-type = 2
+proj = proton
+e0 = 150
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+dir = 1
+
+infl: {onion.inp} [1-40]
+infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 100
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure using [T-3dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out
+title = Check source direction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg 
+reg = 101 102 103 104 105
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+stdcut = 0.01
+
+[T-Deposit]
+title = Deposition energy in reg mesh
+mesh = reg 
+reg = 101 102 103 104 105
+material = all
+output = dose
+axis = reg
+file = deposit.out
+part = all
+gshow = 1
+
+[End]
+Lecture 3 Exercise 7
+
+[Title]
+Input file for lecture about [Parameters] section
+
+[Parameters]
+icntl = 0
+maxcas = 2000
+maxbch = 5
+$ istdev = -1
+
+set: c1[25]
+
+[Source]
+totfact = 1e6*(2*c1)**2*3600
+s-type = 2
+proj = proton
+e0 = 150
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+dir = 1
+
+infl: {onion.inp}[1-40]
+infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-phi = 0
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 100
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure using [T-3dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out
+title = Check source direction using [T-track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg 
+reg = 101 102 103 104 105
+file = volume.out
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+stdcut = 0.01
+
+[T-Deposit]
+title = Deposition energy in reg mesh
+mesh = reg
+reg = 101 102 103 104 105
+unit = 0
+material = all
+output = dose
+axis = reg
+file = deposit.out
+part = all 
+gshow = 1
+
+[End]
+Lecture 3 Exercise 8
+
+[Title]
+Input file fpr lecture about [Parameters] section
+
+[Parameters]
+icntl = 0
+maxcas = 1000
+maxbch = 1
+$ istdev = -1
+negs = 1
+
+set: c1[25]
+
+[Source]
+totfact = 1e6*(2*c1)**2*3600
+s-type = 2
+proj = photon
+e0 = 10
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+dir = 1
+
+infl: {onion.inp}[1-40]
+infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-phi = 0
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 100
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure using [T-3dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton electron positron photon
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out 
+title = Check source direction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg 
+reg = 101 102 103 104 105
+file = volume.out
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+stdcut = 0.01
+
+[T-Deposit]
+title = Deposition energy in reg mesh
+mesh = reg
+reg = 101 102 103 104 105
+unit = 0
+material = all
+output = dose
+axis = reg
+file = deposit.out
+part = all
+gshow = 1
+
+[End]
+
+Lecture 3 Exercise 9
+
+[Title]
+Input file for lecture about [Parameters] section
+
+[Parameters]
+icntl = 0
+maxcas = 1000
+maxbch = 1
+$ istdev = -1
+negs = 1
+emin(12) = 0.001
+emin(13) = 0.001
+
+set: c1[25]
+
+[Source]
+totfact = 1e6*(2*c1)**2*3600
+s-type = 2
+proj = photon
+e0 = 10
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+dir = 1
+
+infl: {onion.inp}[1-40]
+infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-phi = 0
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 100
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure with [T-3Dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton electron positron photon
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out
+title = Check source direction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg
+reg = 101 102 103 104 105
+file = volume.out
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+stdcut = 0.01
+
+[T-Deposit]
+title = Deposition energy in reg mesh
+mesh = reg
+reg = 101 102 103 104 105
+unit = 0
+material = all
+output = dose
+axis = reg
+file = deposit.out
+part = all
+gshow = 1
+[End]
+
+Lecture 3 Exercise 10
+
+[Title]
+Input file for lecture about [parameters] section
+
+[Parameters]
+icntl = 0
+maxcas = 1000
+maxbch = 1
+$ istdev = -1
+negs = 1
+$ emin(120 = 0.001
+$ emin(13) = 0.001
+
+set: c1[25]
+
+[Source]
+totfact = 1e6*(2*c1)**2*3600
+s-type = 2
+proj = neutron
+e0 = 10
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+dir = 1
+
+infl: {onion.inp}[1-40]
+infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-phi = 0
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 100
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure using [T-3Dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton electron positron photon
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out
+title = Check source direction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg
+reg = 101 102 103 104 105
+file = volume.out
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+stdcut = 0.01
+
+[T-Deposit]
+title = Deposition energy in reg mesh
+mesh = reg 
+reg = 101 102 103 104 105
+unit = 0
+material = all
+output = dose
+axis = reg
+file = deposit.out
+part = neutron proton
+gshow = 1
+
+[End]
+
+Lecture 3 Exercise 11
+
+[Title]
+Input file for lecture about [parameters] section
+
+[Parameters]
+icntl = 0
+maxcas = 1000
+maxbch = 1
+$ istdev = -1
+negs = 1
+$ emin(12) = 0.001
+$ emin(13) = 0.001
+e-mode = 2
+
+set: c1[25]
+
+[Source]
+totfact = 1e6*(2*c1)**2*3600
+s-type = 2
+proj = neutron
+e0 = 10
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -30
+z1 = -30
+dir = 1
+
+infl: {onion.inp}[1-40]
+infl: {volume.out}
+
+[T-3Dshow]
+output = 3
+material = -1
+6
+x0 = 0
+y0 = 0
+z0 = 0
+e-the = 70
+e-phi = 20
+e-dst = 80
+l-the = 20
+l-phi = 0
+l-dst = 100
+w-wdt = 50
+w-hgt = 50
+w-dst = 25
+heaven = z
+line = 1
+shadow = 2
+resol = 1
+file = 3dshow.out
+title = Check onion structure using [T-3Dshow] tally
+epsout = 1
+box = 1
+box 0 0 0
+100 0 0
+0 100 0 100
+
+[T-Track]
+mesh = xyz
+x-type = 2
+nx = 140
+xmin = -35
+xmax = 35
+y-type = 1
+ny = 1
+-35 35
+z-type = 2
+nz = 140
+zmin = -35
+zmax = 35
+part = proton electron positron photon
+e-type = 1
+ne = 1
+0 200
+unit = 1
+axis = xz
+file = track_xz.out
+title = Check source direction using [T-Track] tally
+gshow = 3
+epsout = 1
+
+[T-Volume]
+mesh = reg
+reg = 101 102 103 104 105
+file = volume.out
+s-type = 2
+x0 = -c1
+x1 = c1
+y0 = -c1
+y1 = c1
+z0 = -c1
+z1 = c1
+stdcut = 0.01
+
+[T-Deposit]
+title = deposition energy in reg mesh
+mesh = reg
+reg = 101 102 103 104 105
+unit = 0
+material = all
+output = dose
+axis = reg
+file = deposit.out
+part = neutron proton
+gshow = 1
+
+[End]
+Lecture 3 Homework
+
+[Title]
+Answer example for homework
+
+[Parameters]
+icntl = 0
+maxcas = 10000
+maxbch = 5
+e-mode = 2
+negs = 1
+
+[Source]
+s-type = 1
+proj = proton
+e0 = 290
+r0 = 2.5
+z0 = -10
+z1 = -10
+dir = 1
+totfact = 1/1.602e-19*1.0e-9
+
+[Material]
+mat[1] H 2 O 1
+
+[Surface]
+10 cz 10
+101 pz 0
+102 pz 50
+999 so 500
+
+[Cell]
+1 1 -1 -10 101 -102
+100 0 -999 #1
+101 -1 999
+
+[T-Track]
+title = Track Detection using [T-Track] tally
+mesh = xyz
+x-type = 2
+xmin = -20
+xmax = 20
+nx = 200
+y-type = 1
+ny = 1
+-5 5
+z-type = 2
+zmin = -20
+zmax = 70
+nz = 200
+part = proton neutron
+e-type = 1
+ne = 1
+0 10000
+unit = 1
+axis = xz
+file = track_xz.out
+gshow = 1
+epsout = 1
+
+[T-Deposit]
+title = Deposit energy in water phantom
+mesh = r-z
+x0 = 0
+y0 = 0
+r-type = 1
+nr = 2
+0 2.5 10
+z-type = 2
+zmin = -10
+zmax = 60
+nz = 200
+unit = 0
+output = dose
+axis = z
+file = deposit.out
+epsout = 1
+samepage = r
+
+[End]

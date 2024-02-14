@@ -1,0 +1,85 @@
+from google.colab import auth
+auth.authenticate_user()
+
+import numpy as np
+import gspread
+from google.auth import default
+creds, _ = default()
+
+gc = gspread.authorize(creds)
+
+worksheet = gc.open('material').sheet1
+
+# get_all_values gives a list of rows.
+rows = worksheet.get_all_values()
+
+# Convert to a DataFrame and render.
+import pandas as pd
+pd.DataFrame.from_records(rows)
+
+rows = np.array(rows)
+
+# Kode ini memberikan keluaran berupa nama unsur dan fraksi massanya
+def mat(var):
+  atom = rows[1:-2, 0] 
+  panjang = len(atom)             # untuk mencari banyak atom yang ada
+  fraksi_massa  = rows[1:-2, var] # fraksi massa jaringan di kolom ke-var
+  rho_jaringan  = rows[-3, var]   # massa jenis jaringan di kolom ke-var
+  nama_jaringan = rows[0, var]    # nama jaringan di kolom ke-var
+  print("$", nama_jaringan, ", massa jenis = ", rho_jaringan, "g/cm^3") # judul
+  sum = 0 # digunakan untuk mengecek apakah total fraksi massa sama dengan 100 %
+          # jika tidak 100 %, cek ulang fraksi massa di spreadsheet
+  for i in range(panjang-1):
+    if fraksi_massa[i] == "":
+      pass  # apabila unsur kosong maka pass
+    else:
+      sum += float(fraksi_massa[i])
+      print(atom[i], "\t", fraksi_massa[i])
+  print("\n", sum*-100, "% benar")
+
+# Kode ini memberikan keluaran berupa fraksi massa masing-masing unsur dalam
+# jaringan sebelum ditambahkan dengan Boron-10
+def fraksi_old():
+  atom = rows[1:-2, 0]          # mendapatkan banyak atom
+  jaringan = rows[0].shape[0]   # mendapatkan banyak jaringan 
+  for k in range(1, jaringan):
+    fraksi_massa = rows[1:-2, k]
+    panjang = len(atom)
+  
+    fraksi_massa  = rows[1:-2, k] # fraksi massa jaringan di kolom ke-k
+    rho_jaringan  = rows[-3, k]   # massa jenis jaringan di kolom ke-k
+    nama_jaringan = rows[0, k]    # nama jaringan di kolom ke-k
+
+    print("\nMat[",k,"] $", nama_jaringan, ", massa jenis = ", rho_jaringan, "g/cm^3") # judul
+    rasio = float(rows[-1, k])    # masing-masing jaringan berbeda
+    for i in range(panjang-1):
+      if fraksi_massa[i] == "":
+        pass        # kalau unsur kosong, maka pass
+      else:
+        print(atom[i], "\t", fraksi_massa[i]) 
+
+# Kode ini memberikan keluaran berupa fraksi massa masing-masing unsur dalam
+# jaringan setelah ditambahkan dengan Boron-10. Satuan konsentrasi Boron-10
+# adalah ppm (part per milion) atau mikro gram Boron-10 per gram jaringan kanker
+def fraksi_new(kons):
+  kons = float(kons) / 1000000  # mengubah satuan mikro gram ke gram
+  atom = rows[1:-2, 0]          # mendapatkan banyak atom
+  jaringan = rows[0].shape[0]   # mendapatkan banyak jaringan 
+  for k in range(1, jaringan):
+    fraksi_massa = rows[1:-2, k]
+    panjang = len(atom)
+  
+    fraksi_massa  = rows[1:-2, k] # fraksi massa jaringan di kolom ke-k
+    rho_jaringan  = rows[-3, k]   # massa jenis jaringan di kolom ke-k
+    nama_jaringan = rows[0, k]    # nama jaringan di kolom ke-k
+
+    print("\nMat[",k,"] $", nama_jaringan, ", massa jenis = ", rho_jaringan, "g/cm^3") # judul
+    rasio = float(rows[-1, k])    # masing-masing jaringan berbeda
+    fraksi_b10 = (kons * rasio) / (kons * rasio + 1)
+    for i in range(panjang-1):
+      if fraksi_massa[i] == "":
+        pass        # kalau unsur kosong, maka pass
+      else:
+        fraksi_baru = float(fraksi_massa[i]) / (kons * rasio + 1)
+        print(atom[i], "\t", fraksi_baru) 
+    print("10B \t",  -fraksi_b10)

@@ -1,5 +1,5 @@
 [Title]
-Adult male ORNL phantom
+Adult female ORNL phantom
 
 [Parameters]
  icntl    =           8     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP

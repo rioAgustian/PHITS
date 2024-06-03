@@ -1,0 +1,99 @@
+[Title]
+Minimized input file for lecture.
+
+[Parameters]
+icntl    =           8     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+maxcas   =          10     # (D=10) number of particles per one batch
+maxbch   =          1000     # (D=10) number of batches
+
+[Source]
+   s-type =   1             # mono-energetic axial source
+     proj =  proton         # kind of incident particle         
+      dir =   1.0           # z-direction of beam [cosine]
+       r0 =   2.5            # radius [cm]
+       z0 =   -10           # minimum position of z-axis [cm]
+       z1 =   -10            # maximum position of z-axis [cm]
+       e0 =   290.          # energy of beam [MeV/u]
+
+[Material]
+mat[1] $Water
+H 2 O 1
+
+mat[2] $Air
+N -0.8
+O -0.2
+
+Mat[3] $Tissue
+H        -0.101
+C        -0.111
+N        -0.026
+O        -0.762
+
+Mat[4] $Tissue
+H        -0.101
+C        -0.111
+N        -0.026
+O        -0.762
+
+Mat[5] $Tissue
+H        -0.101
+C        -0.111
+N        -0.026
+O        -0.762
+
+[Mat Name Color] 
+mat name color
+1 Water pastelblue
+2 Air blue
+3 GTV yellow
+4 CTV red
+5 PTV purple
+
+set: c1[0]
+set: c2[0]
+set: c3[10]
+
+[Surface]
+1 so 60 $a ball in (0,0,0) with r=60 cm
+2 s c1 c2 c3 3 $GTV
+3 s c1 c2 c3 3.6 $CTV
+4 s c1 c2 c3 4 $PTV
+ 
+[Cell]
+1 2 -0.001205 -1 #2 #3 #4 $air
+2 3 -1 -2 $GTV
+3 4 -1 -3 #2 $CTV
+4 5 -1 -4 #2 #3 $CTV
+
+999 -1 1 $outer void
+
+[ T - T r a c k ]
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+       nx =  200            # number of x-mesh points
+     xmin =  -20.           # minimum value of x-mesh points
+     xmax =   20.           # maximum value of x-mesh points
+   y-type =    1            # y-mesh is given by the below data
+       ny =    1            # number of y-mesh points
+           -5.0  5.0
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+       nz =  200            # number of z-mesh points
+     zmin =  -20.           # minimum value of z-mesh points
+     zmax =   20.           # maximum value of z-mesh points
+   t-type =    2            # t-mesh is linear given by tmin, tmax and nt
+       nt =    1            # number of t-mesh points
+     tmin =   0.0           # minimum value of t-mesh points
+     tmax =   10.0           # maximum value of t-mesh points
+     part =  all      
+   e-type =    1            # e-mesh is given by the below data
+       ne =    1            # number of e-mesh points
+            0.0  1000.0
+     unit =    1            # unit is [1/cm^2/source]
+     axis =   xz            # axis of output
+     file = track_xz.out  # file name of output for the above axis
+    title = Track Detection using [T-track] tally
+    gshow =    3            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+
+[ E n d ]
+

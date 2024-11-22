@@ -1,0 +1,355 @@
+[Title]
+Beam Shaping Assembly
+
+[Parameters]
+icntl=8
+maxcas = 100
+maxbch = 10
+nlost = 60000
+e-mode = 0 
+
+[Source]
+totfact = 6.241e15
+s-type  = 1
+proj   	= proton
+e0 		= 30 $ MeV
+z0 		= -139
+z1 		= -139
+dir 	= 1
+r0 		= 4 
+
+[Material]
+Mat[10] $ Be
+04009 -1 
+
+Mat[11] $ PbF2
+82000 -0.845035
+9000  -0.154965
+
+Mat[12] $ Al
+13027 -1
+
+$Mat[13] $ LiF
+$3006 	-0.017583
+$3007 	-0.249692
+$9019	-0.731667
+
+Mat[13] $ CaF2
+9000 -0.486672
+20000 -0.513328
+
+Mat[14] $ B4C
+5010	-0.144221
+5011	-0.638271
+6000	-0.217329
+
+Mat[15] $ Ni 
+28000 -1
+
+Mat[16] $ Bi
+83209 -1
+
+Mat[17] $ Pb
+82206 -0.244 
+82207 -0.224
+82208 -0.532
+
+Mat[18] $ Lithiated Polyethilene
+1001 -0.5252
+6000 -0.2969
+8016 -0.1007
+3006 -0.7024
+3007 -0.0038
+
+mat[19] $ Boroted Paraffin Wax
+1001 -.136525 
+6012 -.813475 
+5010 -.0099 
+5011 -.0401
+
+Mat[20] $ Udara
+C  -0.000124
+N  -0.755268
+O  -0.231781
+Ar -0.012827
+ 
+Mat[21] H 2 O 1
+mt21   lwtr.20t
+
+Mat[2001]     H  1.0  $ H
+Mat[2002]     N  1.0  $ N
+Mat[2003]   10B  1.0  $ 10B
+
+[Mat Name Color]
+10 BeriliumTarget 		darkred
+11 Reflektor 			red
+12 Moderator 			pink
+13 FastNeutronFilter 	orange
+14 NeutronThermalFilter brown
+15 Aperture 			yellow
+16 Bismut 				pastelgreen
+17 GammaShielding 		darkgreen
+18 Delimiter 			magenta
+19 NeutronShielding		blue
+20 Udara				white
+21 Phantom				yellow
+
+[Surface]
+1 	px 252.1
+2 	px 242
+3 	px 205
+4 	cx 57
+5 	cx 28
+6  	cx 2.54
+7   cx 67.01
+8 	cx 25
+9 	cx 15
+10  px 166
+12	px 153
+31  px 141.995
+34  px 141.694
+35  px 129.3
+38  kx 125 0.6
+39  kx 105.9 0.9
+43  cx 9.5
+44  px 260
+45  kx 135 0.65
+46  px 141.49
+48 	px 145.291
+49  px 154
+50  px 153.995
+53  px 141.994
+54  px 144
+55  px 134.501
+56  cx 2.04
+101 cx 5
+102 px 204.5
+121 px 143
+122 px 129.3
+139 kx 106 0.9
+171 cx 87
+181 px 252
+400 so 300
+3001 px 126.3
+3002 px 121.3
+210 cz 20
+211 pz 1
+212 pz 11
+
+[Transform]
+*tr2   0 0 121.3	0 0 0 	2 90 0 0 0 0 3
+$ *tr2   0 0 0	0 0 0 	0 0 0 0 0 0 3
+
+
+[Cell] off
+100 20  -0.0012 -400 #3 #18 #19 #20
+101 -1 400 $ outer void
+3 11 -7.77 (-4 101 -2 12)  
+$ Aperture
+18 15 -9.807 35 -46 56 -6 
+$ Neutron shielding
+19 19 -0.930 6 -171 -35 3001 
+$ Gamma shielding
+20 17 -11.34 6 -171 -3001 3002 
+
+[Cell] 
+$ Phantom air
+210 21 -1 -210 211 -212
+100 20  -0.0012 -400  #1 #2 #3 #4 #5 #6 #7 #8 #9 #10 #11 #12 #13 #14 #15 #16 #17 #18 #19 #20 #210
+101 -1 400 $ outer void
+$ Delimiter
+1 18 -0.9843 -171 -1 101 122 #2 #3 #4 #5 #6 #8 #9 #10 #12 #13 #14 #17 #18 trcl=2
+$ Reflektor
+2 11 -7.77 (-139 35 -12 101) #6 #5 #10 #12 #13 #17 #18 trcl=2
+3 11 -7.77 (-4 101 -2 12) #4 #6 #8 #9 trcl=2
+$ Moderator
+4 12 -2.7 (-10 49 -45):(-3 10 -8) #8 trcl=2
+$ Thermal neutron filter
+5 14 -2.520 -45 -53 34 trcl=2
+$ Fast neutron filter
+$ 6 13 -2.653 -50 -45 31 trcl=2
+6 13 -3.18 -50 -45 31 trcl=2
+$ Jalur partikel proton
+7 0 3 -101 -44 trcl=2
+$ Berilium target
+8 10 -1.850 102 -3 -43 trcl=2
+$ Gamma shielding
+9  16 -9.8 -44 3 101 -9 trcl=2
+10 16 -9.8 48 -34 -6 trcl=2
+$ Void
+11 0 -49 -45  50 trcl=2
+12 0 -45  53 -31 trcl=2
+13 0 -6  -55  56 35 trcl=2
+14 0 181 -1 -4 9 trcl=2
+15 0 171 -7 -1 121 trcl=2
+16 0 121 -122 -171 139 trcl=2
+17 0 139 -39 35 -121 trcl=2
+$ Aperture
+18 15 -9.807 55 -46 56 -6 #5 trcl=2
+$ Neutron shielding
+19 19 -0.930 6 -171 -35 3001 trcl=2
+$ Gamma shielding
+20 17 -11.34 6 -171 -3001 3002 trcl=2
+
+[T-Track] 
+title  	= Lintasan Partikel
+mesh   	=  xyz           
+x-type 	=    2            
+nx     	=  200        
+xmin   	=  110  
+xmax 	=   200           
+y-type 	=    1           
+ny 		=    1          
+-5 5
+z-type 	=    2         
+nz 		=  400           
+zmin	=  -100           
+zmax 	=  100         
+t-type  =    2        
+nt 		=    1            
+tmin 	=    0           
+tmax 	= 1E+9 
+part 	=  all      
+e-type 	=    1           
+ne 		=    1            
+0 1000
+unit 	=    1            
+axis 	=   xz            
+file 	= 1_particle_trajectory.out  
+gshow 	=    1          
+epsout 	=    1
+
+[T-Track] off
+title  	= Lintasan Partikel
+mesh   	=  xyz           
+x-type 	=    2            
+nx     	=  400        
+xmin   	=  -90      
+xmax 	=   90            
+y-type 	=    1           
+ny 		=    1          
+-5 5
+z-type 	=    2         
+nz 		=  400           
+zmin	=  -139           
+zmax 	=  26           
+t-type  =    2        
+nt 		=    1            
+tmin 	=    0           
+tmax 	= 1E+9 
+part 	=  all      
+e-type 	=    1           
+ne 		=    1            
+0 1000
+unit 	=    1            
+axis 	=   xz            
+file 	= 1_particle_trajectory.out  
+gshow 	=    3          
+epsout 	=    1
+          
+
+[T-Cross] off
+title 	= Fluks Neutron Termal, Epitermal, dan Fast
+mesh 	=  r-z
+x0 		=  0
+y0 		=  0
+r-type 	=  1
+nr 		=  1
+0 5
+z-type 	=  2
+nz 		= 15
+zmin 	=  0
+zmax 	= 3
+part 	=  neutron
+e-type 	=  1
+ne 		=  3
+0 5E-7 0.01 20 
+$t-type 	=  1
+$nt 		=  1
+$0 1E+9 
+samepage=  eng
+unit 	=  1
+axis 	=  z
+file 	=  2_neutron_flux.out
+output 	=  flux
+epsout 	=  1
+
+[T-Track] off
+Title 	= Dosis Neutron
+mesh 	= r-z
+r-type 	=  2 
+rmin 	=  0
+rmax 	=  5
+nr 		=  1 
+z-type 	=  2
+zmin 	=  0
+zmax 	= 3 
+nz 		= 3
+e-type 	= 3
+ne 		= 1
+emin 	= 1E-2 $ 10 keV
+emax 	= 20
+axis 	= z
+unit 	= 1
+part 	= neutron 
+multiplier = 1 
+part  	= neutron
+emax  	= 20
+mat  mset1   
+21 (5.322142e-12 2001 1 -4)
+y-txt 	= Dose (Gy/source}
+file 	= 3_neutron_dose.out
+epsout 	= 2
+
+[t-track] off
+Title 	= Dosis Gamma
+mesh 	= r-z
+r-type 	=  2
+rmin 	=  0
+rmax 	=  5
+nr 		=  1 
+z-type 	=  2
+zmin 	=  0        
+zmax 	= 3    
+nz 		= 3    
+axis 	=  z
+file 	= 4_gamma_dose.out  
+part 	= photon
+e-type 	=  1            
+ne 		=  1            
+0 1000
+unit 	=  1 $ satuannya [1/cm^2/source]
+multiplier = 1
+   part  = photon
+     emax  = 2.000e+01
+      mat        mset1
+      21 (1.068212E-11  21 -5 -6)
+epsout 	= 1
+   
+[T-Cross] off
+title	= Arus Neutron
+mesh 	= r-z
+x0 		= 0
+y0 		= 0
+r-type 	= 1
+nr 		= 1
+0 5
+z-type 	= 2
+zmin 	= 0
+zmax 	= 3
+nz 		= 3
+part 	= neutron
+e-type 	= 1
+ne 		= 1
+0 20
+t-type 	= 1
+nt 		= 1
+0 1E+9 
+samepage= eng
+unit 	= 1
+axis 	= z
+file 	= 5_neutron_current.out
+output 	= current
+epsout 	= 1
+	
+[ E n d ]

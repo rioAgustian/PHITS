@@ -4,7 +4,8 @@
 
 ## 1. PHITS input code of Beam Shaping Assembly
 12 February 2026
-I finnaly can reduce the uncertainties of thermal neutron flux. I change the phantom to water.
+
+I finally can reduce the uncertainties of thermal neutron flux. I change the phantom to water.
 
 ## 2. Automatication Using Python
 ### Make a script that generate N input files based on sobol sampling

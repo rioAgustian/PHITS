@@ -1,0 +1,336 @@
+$OMP=15
+[ T i t l e ]
+BSA with sliced moderator.
+
+$===================================================================================================================================================================
+$ Ini adalah versi BSA parametric, tetapi versi "sliced" atau "terpotong". Persoalan utama dari kode BSA adalah bahwa dearah phantom tergolong pada dearah yang 
+$ dalam. Ini membuat neutron termal memiliki uncertainty yang sangat tinggi, sebab neutron termal jarang terbentuk. Dengan histori yang cukup besar (200 juta)
+$ uncertainty dari neutron termal sangat tinggi dibandingkan dengan hasil pengukuran yang lain. Hal ini membuat penggunaan teknik variance reduction menjadi tidak
+$ terelakkan.
+
+$ Saya telah mencoba teknik [Importance], tetapi tidak memuaskan. Teknik yang paling cocok adalah teknik [Weight Window]. Kekurangan teknik ini adalah kita perlu
+$ menulis bobot secara manual. Kita bisa men-generate bobot secara otomatis dengan [T-WWG], tetapi tetap tidak saya pilih sebab grand plan saya adalah membuat
+$ kode ini menjadi bersifat parametric dan membuat ratusan konfigurasi BSA dengan dimensi yang berbeda-beda. [T-WWG] memerlukan saya untuk melakukan running awal
+$ untuk menentukan bobot secara otomatis, tetapi teknik ini juga perlu nilai dari volume. Sebab saya tidak ingin repot dan akan mempersulit penelitian di kemdudian
+$ hari, maka saya putuskan untuk tetap menggunakan Weight Window saja.
+
+$ Persoalan dengan Weight Window adalah, entah berapa bobot yang saya gunakan, error dari fluks neutron termal tetap tinggi (di atas 50$). Semua nilai (dosis 
+$ neutron fast, dosis gamma, fluks neutron epitermal, fluks neutron fast, dan arus neutron epitermal) telah memiliki uncertainty di bawah 5%. Memang secara fisis
+$ ini sangat wajar, sebab kemunculan neutron termal jarang (filternya terlalu bagus!). Weight window itu bekerja dengan 2 cara: particle splitting dan Russian 
+$ roullete. Jika particle masuk ke daerah "yang lebih penting", partikel akan di-split. Jika sebaliknya, partikel masuk ke dearah "yang kurang penting", partikel
+$ akan dihentikan. 
+
+$ Hal yang baru di kode ini adalah saya mengiris (slice) moderator 1 dan moderator 2. Ini sebab geometri tersebut terlalu tebal dan saya menduga banyak neutron
+$ termal di daerah tersebut yang muncul tetapi dihentikan oleh efek moderasi alumunium. Setelah saya cek menggunakan [T-Track] untuk mendeteksi fluks sepanjang
+$ sumbu z, ternyata memang neutron termal tidak muncul di dearah tersebut. Jadi saya kena memutar otak untuk teknik yang lain. Saya juga menambahkan volume di sini. 
+$ Saya hitung dengan metode monte carlo bawaan PHITS (icntl=14). 
+
+$ - Rio Agustian Gilang Fernando
+$   Hanoi, Vietnam, 12 February 2025
+$===================================================================================================================================================================
+
+[ P a r a m e t e r s ]
+ icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+ maxcas   =          1000000     # (D=10) number of particles per one batch
+ maxbch   =           15     # (D=10) number of batches
+ e-mode   = 2
+  nucdata=1
+  maxbnk = 2000000
+
+
+set:c1[50.0] $Proton beam line length
+set:c2[0.5] $Berylium (target) thickness
+set:c3[19.0] $Moderator-1 thickness
+set:c4[12.0] $Moderator-2 thickness
+set:c5[3]  $Fast neutron filter thickness
+set:c6[1]  $Thermal neutron filter
+set:c7[1]  $Gamma filter thickness
+set:c8[10.0] $Gamma shield
+
+[ S o u r c e ]
+   s-type =   1             # mono-energetic axial source
+       z0 =  -(c1+c3+c4+c5+c6+c7+c8) # minimum position of z-axis [cm]
+       z1 =  -(c1+c3+c4+c5+c6+c7+c8) # maximum position of z-axis [cm]
+       r0 =   5           # radius [cm]
+      dir =   1.0           # z-direction of beam [cosine]
+       e0 =   13.          # energy of beam [MeV/u]
+     proj =  proton            # kind of incident nucleus
+	 totfact = 6.241e15
+
+
+[ M a t e r i a l ]
+mat[1] $Proton beam line 9.747 g/cm^3
+Bi  -1.0
+
+mat[2] $Beryllium 1.848 g/cm^3
+Be -1.0
+
+mat[3] $Moderator 1.6989 g/cm^3
+Al -1.0
+
+mat[4] $Fast neutron filter 2.635 g/cm^3
+6Li -0.017583
+7Li -0.249692
+19F -0.731667
+
+mat[5] $Thermal neutron filter 2.52 g/cm^3
+10B	-0.144221
+11B	-0.638271
+C	-0.217329
+
+mat[6] $Gamma filter 9.747 g/cm^3
+Bi -1.0
+
+mat[7] $Reflector 11.35 g/cm^3
+Pb -1.0
+
+mat[8] $Gamma shield 11.35 g/cm^3
+Pb -1.0
+
+mat[9] $Soft tissue 1 g/cm^3
+H	-0.101172
+C	-0.111000
+N	-0.026000
+O	-0.761828
+mt9   lwtr.20t
+
+[ Mat Name Color ]
+mat name       color
+1   ProtonLine green
+2   Berylium   red
+3   Moderator  yellowgreen 
+4   FastNeutronFilter     pastelpink
+5   ThermalNeutronFilter darkred
+6   GammaFilter mossgreen
+7   Reflector pastelblue
+8   GammaShield magenta 
+9   Phantom blue
+
+[ S u r f a c e]
+999 so 500.
+$ --------PROTON BEAM LINE ---
+10  cz 7.5
+1000 cz 5
+101 pz 0.
+102 pz c1
+103 cz 5
+$---------BERYLIUM-------------
+104 cz 15
+105 pz c1+c2 
+$---------MODERATOR------------
+106 cz 30
+1070 pz c1+(c3/5)*1   $Mod_1
+1071 pz c1+(c3/5)*2
+1072 pz c1+(c3/5)*3
+1073 pz c1+(c3/5)*4
+1074 pz c1+(c3/5)*5
+
+1080 pz c1+c3+(c4/3)*1 $Mod_2
+1081 pz c1+c3+(c4/3)*2
+1082 pz c1+c3+(c4/3)*3
+
+109 kz c1+c3+c4+c5+10 1 -1
+$--------FAST NEUTRON FILTER------
+110 pz c1+c3+c4+c5
+$--------THERMAL NEUTRON FILTER---
+111 pz c1+c3+c4+c5+c6
+$--------GAMMA FILTER-------------
+112 pz c1+c3+c4+c5+c6+c7
+$--------REFLECTOR----------------
+113 cz 57
+$--------GAMMA SHIELD-------------
+114 cz 57+1.5
+115 pz c1+c3+c4+c5+c6+c7+c8
+$--------PHANTOM------------------
+116 pz 5
+
+[Transform]
+*tr1 0 0 -(c1+c3+c4+c5+c6+c7+c8) 0 0 0 0 0 0 0 0 0 3
+
+[ C e l l ]
+100    0      -999  #all
+101   -1       999
+$--------PROTON BEAM LINE---------
+1  1 -9.747 -10  101 -102 #2 trcl=1
+2  0      -103 101 -102  trcl=1
+$--------BERYLIUM-----------------
+3  2 -1.848 -104 102 -105 trcl=1
+$--------MODERATOR----------------
+40  3 -1.6989 -106 102  -1070 #3 trcl=1
+41  3 -1.6989 -106 1070 -1071 #3 trcl=1
+42  3 -1.6989 -106 1071 -1072 #3 trcl=1
+43  3 -1.6989 -106 1072 -1073 #3 trcl=1
+44  3 -1.6989 -106 1073 -1074 #3 trcl=1
+
+50  3 -1.6989 -109 1074 -1080 trcl=1
+51  3 -1.6989 -109 1080 -1081 trcl=1
+52  3 -1.6989 -109 1081 -1082 trcl=1
+
+$--------FAST NEUTRON FILTER------
+6  4 -2.635 -109 1082 -110 trcl=1
+$--------THERMAL NEUTRON FILTER---
+7  5 -2.52 -109 110 -111 trcl=1
+$--------GAMMA FILTER-------------
+8  6 -9.747 -109 111 -112 trcl=1
+$--------REFLECTOR----------------
+9  7 -11.35 -113 101 -112 #1 #2 #3 #40 #41 #42 #43 #44 
+                          #50 #51 #52 #6 #7 #8 trcl=1
+$--------GAMMA SHIELD-------------
+10 8 -11.35 -114 101 -115 #1 #2 #3 #40 #41 #42 #43 #44 
+                          #50 #51 #52 #6 #7 #8 #9 #11 trcl=1
+$--------APERTURE-----------------
+11 0      -103 112 -115 trcl=1
+$--------PHATOM-------------------
+12 0      -1000 101 -116 
+
+[ Weight Window ]
+   mesh = reg
+   part = all
+   eng  = 2
+   5.0e-7  20.0
+   reg   ww1         ww2
+     2      1.0          1.0          
+     3      1.0          1.0          
+    40      5.0e-1       5.0e-1 $Moderator_1
+    41      2.5e-1       2.5e-1
+    42      1.2e-1       1.2e-1
+    43      6.0e-2       6.0e-2
+    44      3.0e-2       3.0e-2
+    50      1.5e-2       1.5e-2 $Moderator_2
+    51      7.5e-3       7.5e-3
+    52      3.8e-3       3.8e-3
+     6      1.0e-3       1.9e-3 $Fast Filter
+     7      5.0e-4       9.5e-4 $Thermal Filter
+     8      1.0e-4       4.7e-4 $Gamma Filter
+    11      2.0e-5       1.0e-4 $Aperture
+    12      1.0e-6       2.0e-5 $Phantom 	
+
+[ V o l u m e ]
+  non      non      vol      non      reg
+    1       12   3.9295E+02  0.0019   12
+
+$================NEUTRON FLUX==========================
+[T - C r o s s ] 
+title 	= Neutron flux components
+mesh 	= reg
+reg 	= 1
+  r-from 	r-to 	area
+  11     	12   	pi*5*5
+part 	= neutron
+e-type 	= 1
+ne 		= 3
+  0 5.0e-7 1.0e-2 20.0
+unit 	= 1
+axis 	= eng
+file 	= 1_neutron_flux.out
+output 	= flux
+epsout 	= 1
+
+$================NEUTRON CURRENT====================
+[T - C r o s s ]
+title 	= Epithermal neutron current
+mesh 	= reg
+reg     = 1
+r-from r-to area
+11 12 78.53982
+part 	= neutron
+e-type  = 1
+ne      = 1
+  5.0e-7 1.0e-2
+unit    = 1
+axis    = reg
+file    = 2_epitermal_neutron_current.out
+output  = current
+epsout 	= 1
+
+$===============FAST NEUTRON DOSE===================
+[T - T r a c k]
+title 	= Fast neutron dose
+mesh	= reg
+reg     = 12
+part    = neutron
+e-type  = 1
+ne      = 1
+  1.0e-2 20.0
+unit    = 1
+multiplier = all
+part = neutron
+emax    = 20
+  mat mset1
+  all (1.602e-10 9 1 -4)
+axis = reg
+file = 3_fast_neutron_dose.out
+epsout 	= 1
+
+$===============PHOTON DOSE=========================
+[T - T r a c k]
+title 	= Photon dose
+mesh    = reg
+reg     = 12
+part    = photon
+
+e-type  = 1
+ne      = 1
+1.0e-11 20.0
+unit    = 1
+multiplier = all
+part = photon
+emax    = 20
+  mat mset1
+  all (1.602e-10 9 -5 -6)
+axis    = reg
+file    = 4_photon_dose.out
+epsout 	= 1
+
+$================PARTICLE DISTRIBUTION==============
+[ T - T r a c k ] 
+    title = Track Detection in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+       nx =   200            # number of x-mesh points
+     xmin =  -70.           # minimum value of x-mesh points
+     xmax =   70.           # maximum value of x-mesh points
+   y-type =    1            # y-mesh is given by the below data
+       ny =    1            # number of y-mesh points
+           -5.0  5.0
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+       nz =   200            # number of z-mesh points
+     zmin =  -150.           # minimum value of z-mesh points
+     zmax =   10.           # maximum value of z-mesh points
+   e-type =    1            # e-mesh is given by the below data
+       ne =    1            # number of e-mesh points
+            0.0  5000.0
+   t-type =    1            # t-mesh is given by the below data
+       nt =    1            # number of t-mesh points
+            0.0  1.0e+6
+     unit =    1            # unit is [1/cm^2/source]
+     axis =   xz            # axis of output
+     file = 5_track_xz.out  # file name of output for the above axis
+     part =  all      
+    gshow =    3            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+   
+$================FLUX DISTRIBUTION==============
+[ T - T r a c k ] 
+    title = Track Detection in xyz mesh
+     mesh =  r-z            # mesh type is xyz scoring mesh
+   r-type = 1
+   nr = 1
+   0.0 5.0
+   z-type = 2
+   nz = 200
+   zmin = -100
+   zmax = 10
+   e-type = 1
+   ne = 3
+  0 5.0e-7 1.0e-2 20.0
+  t-type =    1            # t-mesh is given by the below data
+       nt =    1            # number of t-mesh points
+            0.0  1.0e+9
+     unit =    1            # unit is [1/cm^2/source]
+     axis =   z            # axis of output
+     file = 6_track_r-z.out  # file name of output for the above axis
+     part =  all      
+    gshow =    3            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+[ E n d ]

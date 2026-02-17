@@ -1,0 +1,247 @@
+$OMP=15
+[ T i t l e ]
+BSA with water phantom.
+
+[ P a r a m e t e r s ]
+ icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+ maxcas   =          1000000     # (D=10) number of particles per one batch
+ maxbch   =           100     # (D=10) number of batches
+ nucdata=1
+ maxbnk = 2000000
+ wc2(2)   = 1.0E-12 # weight cutoff of neutron
+
+
+set:c1[50.0] $Proton beam line length
+set:c2[0.5] $Berylium (target) thickness
+set:c3[{MOD_1}] $Moderator-1 thickness
+set:c4[{MOD_2}] $Moderator-2 thickness
+set:c5[{FNF}]  $Fast neutron filter thickness
+set:c6[{TNF}]  $Thermal neutron filter
+set:c7[{GF}]  $Gamma filter thickness
+set:c8[{GS}] $Gamma shield
+
+[ S o u r c e ]
+   s-type =   1             # mono-energetic axial source
+       z0 =  -(c1+c3+c4+c5+c6+c7+c8) # minimum position of z-axis [cm]
+       z1 =  -(c1+c3+c4+c5+c6+c7+c8) # maximum position of z-axis [cm]
+       r0 =   5           # radius [cm]
+      dir =   1.0           # z-direction of beam [cosine]
+       e0 =   13.          # energy of beam [MeV/u]
+     proj =  proton            # kind of incident nucleus
+	 totfact = 6.241e15
+
+
+[ M a t e r i a l ]
+mat[1] $Proton beam line 9.747 g/cm^3
+Bi  -1.0
+
+mat[2] $Beryllium 1.848 g/cm^3
+Be -1.0
+
+mat[3] $Moderator 1.6989 g/cm^3
+Al -1.0
+
+mat[4] $Fast neutron filter 2.635 g/cm^3
+6Li -0.017583
+7Li -0.249692
+19F -0.731667
+
+mat[5] $Thermal neutron filter 2.52 g/cm^3
+10B	-0.144221
+11B	-0.638271
+C	-0.217329
+
+mat[6] $Gamma filter 9.747 g/cm^3
+Bi -1.0
+
+mat[7] $Reflector 11.35 g/cm^3
+Pb -1.0
+
+mat[8] $Gamma shield 11.35 g/cm^3
+Pb -1.0
+
+mat[9] $Water 1 g/cm^3
+H	2
+O   1
+mt9   lwtr.20t
+
+[ Mat Name Color ]
+mat name       color
+1   ProtonLine green
+2   Berylium   red
+3   Moderator  yellowgreen 
+4   FastNeutronFilter     pastelpink
+5   ThermalNeutronFilter darkred
+6   GammaFilter mossgreen
+7   Reflector pastelblue
+8   GammaShield magenta 
+9   Phantom blue
+
+[ S u r f a c e]
+999 so 500.
+$ --------PROTON BEAM LINE ---
+10  cz 7.5
+1000 cz 5
+101 pz 0.
+102 pz c1
+103 cz 5
+$---------BERYLIUM-------------
+104 cz 15
+105 pz c1+c2 
+$---------MODERATOR------------
+106 cz 30
+1070 pz c1+(c3/5)*1   $Mod_1
+1071 pz c1+(c3/5)*2
+1072 pz c1+(c3/5)*3
+1073 pz c1+(c3/5)*4
+1074 pz c1+(c3/5)*5
+
+1080 pz c1+c3+(c4/3)*1 $Mod_2
+1081 pz c1+c3+(c4/3)*2
+1082 pz c1+c3+(c4/3)*3
+
+109 kz c1+c3+c4+c5+10 1 -1
+$--------FAST NEUTRON FILTER------
+110 pz c1+c3+c4+c5
+$--------THERMAL NEUTRON FILTER---
+111 pz c1+c3+c4+c5+c6
+$--------GAMMA FILTER-------------
+112 pz c1+c3+c4+c5+c6+c7
+$--------REFLECTOR----------------
+113 cz 57
+$--------GAMMA SHIELD-------------
+114 cz 57+1.5
+115 pz c1+c3+c4+c5+c6+c7+c8
+$--------PHANTOM------------------
+116 pz 10
+
+[Transform]
+*tr1 0 0 -(c1+c3+c4+c5+c6+c7+c8) 0 0 0 0 0 0 0 0 0 3
+
+[ C e l l ]
+100    0      -999  #all
+101   -1       999
+$--------PROTON BEAM LINE---------
+1  1 -9.747 -10  101 -102 #2 trcl=1
+2  0      -103 101 -102  trcl=1
+$--------BERYLIUM-----------------
+3  2 -1.848 -104 102 -105 trcl=1
+$--------MODERATOR----------------
+40  3 -1.6989 -106 102  -1070 #3 trcl=1
+41  3 -1.6989 -106 1070 -1071 #3 trcl=1
+42  3 -1.6989 -106 1071 -1072 #3 trcl=1
+43  3 -1.6989 -106 1072 -1073 #3 trcl=1
+44  3 -1.6989 -106 1073 -1074 #3 trcl=1
+
+50  3 -1.6989 -109 1074 -1080 trcl=1
+51  3 -1.6989 -109 1080 -1081 trcl=1
+52  3 -1.6989 -109 1081 -1082 trcl=1
+
+$--------FAST NEUTRON FILTER------
+6  4 -2.635 -109 1082 -110 trcl=1
+$--------THERMAL NEUTRON FILTER---
+7  5 -2.52 -109 110 -111 trcl=1
+$--------GAMMA FILTER-------------
+8  6 -9.747 -109 111 -112 trcl=1
+$--------REFLECTOR----------------
+9  7 -11.35 -113 101 -112 #1 #2 #3 #40 #41 #42 #43 #44 
+                          #50 #51 #52 #6 #7 #8 trcl=1
+$--------GAMMA SHIELD-------------
+10 8 -11.35 -114 101 -115 #1 #2 #3 #40 #41 #42 #43 #44 
+                          #50 #51 #52 #6 #7 #8 #9 #11 trcl=1
+$--------APERTURE-----------------
+11 0      -103 112 -115 trcl=1
+$--------PHATOM-------------------
+12 9 -1 -1000 101 -116 
+
+[ Weight Window ]
+   mesh = reg
+   part = all
+   eng  = 2
+   5.0e-7  20.0
+
+   reg      ww1          ww2
+	 2      1.0          1.0
+     3      1.0          1.0
+    40      0.5          0.5          $ Mod 1
+    41      0.25         0.25
+    42      0.12         0.12
+    43      0.06         0.06
+    44      0.03         0.03
+    50      0.015        0.015        $ Mod 2
+    51      0.007        0.007
+    52      0.003        0.003
+     6      0.001        0.001        $ LiF
+     7      5.0e-5       0.0005       $ B4C 
+     8      2.0e-5       0.0002       $ Bi
+    11      5.0e-6       5.0e-5       $ Aperture
+    12      1.0e-6       1.0e-5       $ Phantom
+	
+[Forced Collisions] 
+part = neutron
+reg  fcl
+12   -1.0
+	
+[ V o l u m e ]
+  non      non      vol      non      reg
+    1       12   pi*5*5*10  0.0019   12
+
+$================NEUTRON FLUX==========================
+[T - C r o s s ] 
+title 	= Neutron flux components
+mesh 	= reg
+reg 	= 1
+  r-from 	r-to 	area
+  11     	12   	pi*5*5
+part 	= neutron
+e-type 	= 1
+ne 		= 3
+  0 5.0e-7 1.0e-2 20.0
+unit 	= 1
+axis 	= eng
+file 	= neutron_flux.out
+output 	= flux
+epsout 	= 0
+
+$================NEUTRON CURRENT====================
+[T - C r o s s ]
+title 	= Epithermal neutron current
+mesh 	= reg
+reg     = 1
+r-from r-to area
+11 12 78.53982
+part 	= neutron
+e-type  = 1
+ne      = 1
+  5.0e-7 1.0e-2
+unit    = 1
+axis    = reg
+file    = epithermal_neutron_current.out
+output  = current
+epsout 	= 0
+
+$===============FAST NEUTRON DOSE===================
+[T - D e p o s i t]
+title = Neutron dose
+mesh = reg
+reg = 12
+part = neutron
+axis = reg
+file = fast_neutron_dose.out
+unit = 0
+output = dose
+epsout = 0
+
+$===============PHOTON DOSE=========================
+[T - D e p o s i t]
+title = Photon dose
+mesh = reg
+reg = 12
+part = photon
+axis = reg
+file = photon_dose.out
+unit = 0
+output = dose
+epsout = 0
+   
+[ E n d ]

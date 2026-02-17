@@ -18,4 +18,26 @@ I chose the maximum thickness as a thickness where $I_0=1%$ the initial intensit
 
 ### 2. Moderator Mode
 
-Moderator's job is to moderate the neutron. In this case, we need special technique to estimate the ma
+Moderator's job is to moderate the neutron. In this case, we need special technique to estimate the maximum neutron path. The cool name for this is crow flight distance. We can calculate it using this equation.
+
+$$\langle r^2 \rangle= 3N \lambda^2$$
+
+With $N$ is the number of collision. The number of collision can be calculate with
+
+$$N = \frac{\ln{\left(\frac{E_{high}}{E_{low}}\right)}}{\xi}$$
+
+The value of $\xi$ is
+
+$$\xi = 1 + \frac{\alpha \ln{\alpha}}{1 - \alpha}$$
+
+And
+
+$$\alpha=\left[ \frac{(M - m)}{(M + m)}\right]^2$$
+
+With
+- M = Mass of the scattering nucleus
+- m = m mass of the incident neutron
+
+## How to use?
+
+Easy, run the `main.py`. You can change the parameters in `params.py`.

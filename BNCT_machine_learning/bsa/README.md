@@ -4,7 +4,7 @@
 ## What it does?
 Calculate the thickness estimation of BSA parts. Specifically: moderator, fast neutron filter, thermal neutron filter, gamma filter, and gamma shielding.
 
-## Why it's important?
+## Why is it important?
 See, when you calculate this kind of stuff, you need the microscopic cross section and a bunch of constans. If you don't use a well structured way, it is very easy to make mistake. This code is created to make MY work easier.
 
 ## Theory

@@ -1,6 +1,6 @@
 # Panduan PHITS Untuk Pemula
 
-## 📋 Daftar Isi
+## Daftar Isi
 * [Peta Jalan PHITS](#peta-jalan-phits)
 * [Navigasi Berdasarkan Topik](#navigasi-berdasarkan-topik)
 * [Tips untuk Pengguna Linux/WSL](#tips-untuk-pengguna-linuxwsl)

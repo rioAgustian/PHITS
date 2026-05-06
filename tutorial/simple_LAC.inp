@@ -1,0 +1,82 @@
+[Title]
+Gamma attenuation 
+
+set:c1[0.1] $Energy 
+set:c2[2] $Thickness    
+set:c3[11.34] $Density
+
+[Parameters]
+icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+negs = -1
+maxcas   =          10000     # (D=10) number of particles per one batch
+maxbch   =           10     # (D=10) number of batches
+
+[Source]
+   s-type =   1             # mono-energetic axial source
+     proj =  photon         # kind of incident particle         
+      dir =   1           # z-direction of beam [cosine]
+       r0 =   0.01            # radius [cm]
+       z0 =  -5           # minimum position of z-axis [cm]
+       z1 =  -5            # maximum position of z-axis [cm]
+       e0 =   c1        
+
+[Material]
+mat[1]
+Pb 1
+
+[Surface]
+10 so	50.
+20 cz  5
+31 pz 0
+32 pz c2
+
+[Cell]
+100	 0  	   -10  #all $inner void
+101	-1	       10 					$ outter void
+102 1 -c3 -20 31 -32
+
+
+[ T - T r a c k ]  $ particle distribution
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+       nx =  500            # number of x-mesh points
+     xmin =  -10.           # minimum value of x-mesh points
+     xmax =   10.           # maximum value of x-mesh points
+   y-type =    1            # y-mesh is given by the below data
+       ny =    1            # number of y-mesh points
+           -5.0  5.0
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+       nz =  500            # number of z-mesh points
+     zmin =  -10.           # minimum value of z-mesh points
+     zmax =   20.           # maximum value of z-mesh points
+	 part =  all      
+   e-type =    1            # e-mesh is given by the below data
+       ne =    1            # number of e-mesh points
+            0.0  1000.0
+     unit =    1            # unit is [1/cm^2/source]
+     axis =   xz            # axis of output
+     file = track_xz.out  # file name of output for the above axis
+    title = Track Detection using [T-track] tally
+    gshow =    3            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+
+[ T - T r a c k ] $ intensity
+     mesh =  r-z            # mesh type is xyz scoring mesh
+   r-type = 1
+    nr = 1
+    0.0  0.5
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+       nz =  200            # number of z-mesh points
+     zmin =  0           # minimum value of z-mesh points
+     zmax =   c2           # maximum value of z-mesh points
+     part =  photon      
+   e-type =   1             # PENTING: Kita bagi berdasarkan energi
+       ne =   1             # 2 Kelompok energi
+	c1-0.001  c1+0.001
+     unit =    1            # unit is [1/cm^2/source]
+     axis =   z            # axis of output
+     file = intensity.out  # file name of output for the above axis
+    title = Track Detection using [T-track] tally
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+[ E n d ]

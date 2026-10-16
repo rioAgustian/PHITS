@@ -1,0 +1,297 @@
+$ BSA
+$ Rio Agustian Gilang Fernando
+
+$OMP=17
+
+[Title]
+Gamma attenuation 
+
+set:c1[39]    $ Moderator 1
+set:c2[12]    $ Moderator 2
+set:c3[8.2]   $ Fast neuton filter
+set:c4[0.5]   $ Thermal neutron filter
+set:c5[0.5]     $ Gamma filter 
+set:c6[15]    $ Moderator 1 radius
+set:c7[28.5]    $ Reflcetor radius
+set:c8[1.5]    $ Gamma shiled radial thickness
+set:c9[10]    $ Gamma shiled axial thickness
+set:c10[6]    $ Berylium radius
+set:c11[35]   $ Proton beam line length
+set:c12[7.5]  $ Proton beam line radius
+set:c17[1]    $ Aperture thickness
+
+set:c16[5]    $ Collimator radius
+set:c13[atan((c6-c16)/(c2+c3))]   $ Theta
+set:c14[tan(c13)*tan(c13)] $ 2nd parameter for cone surface
+set:c15[(c6*(c1+c2+c3) - c16*(c1))/(c6-c16)] $ 1st parameter for cone surface
+
+infl{wwg.out}
+
+[Parameters]
+icntl   =  0     
+negs    =  -1
+maxcas  =  100000     
+maxbch  =  1000     
+istdcut =  1
+e-mode = 0
+igamma = 2
+
+[Source]
+s-type 	=  1             
+proj   	=  proton         
+dir 	=  1           
+r0  	=  5        
+z0  	= -35           
+z1  	= -35           
+e0  	=  30 $MeV    
+totfact =  6.241e15     
+
+[Material]
+
+Mat[1]  $ Alumunium, 2.6989 g/cm^3
+Al  1
+
+Mat[2]  $ LiF, 2.635 g/cm^3
+LI6 -0.017583
+Li7 -0.249692
+F19 -0.731667
+
+Mat[3]  $ B4C, 2.52 g/cm^3
+B10 -0.144221
+B11 -0.638271
+C   -0.217329
+
+Mat[4]  $ Lead, 11.35 g/cm^3
+Pb  1
+
+Mat[5]  $ Tissue, 1 g/cm^3
+H   -0.101172
+C   -0.111000
+N   -0.026000
+O   -0.761828
+MT5 lwtr.20t
+
+Mat[6]  $ Reflector, PbF2, 7.55 g/cm^3
+Pb 1 
+F 2
+
+Mat[7]  $ Target, Be, 1.848 g/cm^3
+Be 1
+
+Mat[8]  $ Aperture, 9.78 g/cm^3
+Bi 1
+
+
+[Mat Name Color]
+mat 	name     	color
+1   	Alumunium 	pastelblue
+2       LiF   		green
+3 		B4C			brown
+4 		Lead		yellow
+5       Tissue      pink
+6 		Reflectoor  orange
+7		Berylium    red
+8       Bismuth     bluegreen
+
+[Surface]
+10 so 150
+20 cz  c6
+21 cz c10
+22 cz c12
+23 cz 5
+24 cz c16
+25 cz c7+c8
+26 cz c16-c17
+31 pz 0
+32 pz c1    $ Moderator 1
+33 pz c1+c2 $ Moderator 2
+34 pz c1+c2+c3 $ fast neutron filter
+35 pz c1+c2+c3+c4 $ Thermal neutron filter
+36 pz c1+c2+c3+c4+c5 $ Gamma filter
+37 pz c1+c2+c3+c4+c5+c9 $ Gamma shield
+38 pz c1+c2+c3+c4+c5+c9+0.1 $ Void phantom
+40 cz c7
+50 pz -0.7
+51 pz -c11
+60 kz c15 c14 -1
+
+[Cell]
+100	 0  	   -10  #all $inner void
+101	-1	       10 				$ outter void
+102 1 -2.6989 -20  31 -32   	$ Moderator
+201 0         -23  37 -38   	$ Void phantom
+301 6 -7.55    -40 51 -36 	#102 #401 #501 #502 #602 #700
+                            #800 #900 $ Reflector
+401 7 -1.848  -21  50 -31       $ Target
+501 1 -2.6989  23 -22 51 -31  #401   $ Proton beam line
+502 0  -23 51 -31    #401       $ Proton beam line void
+602 1 -2.6989 -60 32 -33  $ Moderator 2
+700 2 -2.635  -60 33 -34  $ Fast neutron filter
+800 3 -2.52   -24  34 -35  $ Thermal neutron filter
+900 4 -11.35  -24  35 -36   	$ Gamma filter
+901 4 -11.35  -25  51 -37 #102 #401 #501 #502 #602 #700
+                            #800 #900 #301 #902 #903 $ Gamma shiled axial
+902 8 -9.78 -24 26 36 -37 $ aperture
+903 0 -26 36 -37 $ aperture void
+
+[ V o l u m e ]
+ reg         vol          
+ 201   pi*5*5*0.1  
+
+$======================================
+$ Particle Distribution 
+$======================================
+[T-Track] off  $ 2D Visualization
+mesh   = xyz            
+x-type =   2            
+nx     = 500            
+xmin   = -(c7+c8+10)           
+xmax   =  (c7+c8)+10                      
+y-type =   1            
+ny     =   1            
+	-5.0  5.0
+z-type =   2            
+nz     = 500            
+zmin   = -(c11+10)
+zmax   = c1+c2+c3+c4+c5+c9+0.1+10          
+part   =  all      
+e-type =   1            
+ne     =   1            
+	0.0  1000.0
+unit   =    1            
+axis   =   xz            
+file   = track_xz.out  
+title  = Track Detection using [T-track] tally
+gshow  =    1            
+epsout =    1            
+
+$======================================
+$ Neutron Flux
+$======================================
+[T-Track] 
+title = Neutron flux
+mesh = r-z
+r-type = 1
+nr = 1
+	0 5
+z-type = 2
+nz = 1
+zmin = c1+c2+c3+c4+c5+c9
+zmax = c1+c2+c3+c4+c5+c9+0.1
+unit = 1
+part = neutron
+e-type = 1
+ne = 3
+	0 5.0e-7 1.0e-2 20
+axis = z
+file = neutron_flux.out
+epsout = 0
+stdcut = 0.05
+
+$======================================
+$ Neutron Current 
+$======================================
+[T-Cross] 
+title = Epithermal neutron current
+mesh = reg
+reg = 1
+	r-from 	r-to 	area
+	903 	201		pi*5*5
+part = neutron
+e-type = 1
+ne = 1
+	5.0e-7 1.0e-2
+unit = 1
+axis = reg
+file = epithermal_neutron_current.out
+output = current
+epsout = 0
+stdcut = 0.05
+
+$======================================================================
+$ Fast Neutron Dose (E > 10 keV)
+$======================================================================
+[T-Track]
+title = Fast neutron dose (kerma, tissue, E > 10 keV)
+mesh = r-z
+r-type = 1
+nr = 1
+	0 5
+z-type = 2
+nz = 1
+zmin = c1+c2+c3+c4+c5+c9
+zmax = c1+c2+c3+c4+c5+c9+0.1
+unit = 1
+part = neutron
+e-type = 1
+ne = 1
+	1.0e-2 20
+multiplier = all
+	part = neutron
+	emax = 20
+	mat	mset1
+	all	( 1.535e-11 5 1 -4 )
+axis = z
+file = fast_neutron_dose.out
+epsout = 0
+stdcut = 0.05
+
+$======================================================================
+$ Photon Dose
+$ Same C is assumed (same material, same barn convention). Verify with the
+$ photon check at the bottom.
+$======================================================================
+[T-Track]
+title = Photon dose (kerma, tissue)
+mesh = r-z
+r-type = 1
+nr = 1
+	0 5
+z-type = 2
+nz = 1
+zmin = c1+c2+c3+c4+c5+c9
+zmax = c1+c2+c3+c4+c5+c9+0.1
+unit = 1
+part = photon
+e-type = 1
+ne = 1
+	0.0 20
+multiplier = all
+	part = photon
+	emax = 20
+	mat	mset1
+	all	( 1.535e-11 5 -5 -6 )
+axis = z
+file = photon_dose.out
+epsout = 0
+stdcut = 0.05
+
+
+$======================================
+$ Weight Windown Generator
+$======================================
+[T-WWG] 
+mesh   = xyz
+x-type =   2
+xmin   = -(c7+c8)           
+xmax   =  (c7+c8)   
+nx     =   5
+y-type =   2
+ymin   = -(c7+c8)           
+ymax   =  (c7+c8)   
+ny     =   1
+z-type = 2
+zmin   = -c11
+zmax   = c1+c2+c3+c4+c5+c9+0.1
+nz     = 10
+part   = all
+e-type = 1
+ne     = 1
+	0 1e5
+$xis   = xz 
+$file   = wwg-xz.out
+axis   = wwg
+file   = wwg.out
+epsout = 1
+
+[ E n d ]

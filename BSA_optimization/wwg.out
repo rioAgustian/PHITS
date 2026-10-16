@@ -1,0 +1,93 @@
+
+[ Weight Window ]
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            $ x-mesh is linear given by xmin, xmax and nx
+     xmin =  -30.00010      $ minimum value of x-mesh points
+     xmax =   30.00020      $ maximum value of x-mesh points
+$    xdel =   12.00006      $ mesh width of x-mesh points
+       nx =      5          $ number of x-mesh points
+$    data = ( x(i), i = 1, nx + 1 )
+$          -3.00001E+01 -1.80000E+01 -5.99998E+00  6.00008E+00  1.80001E+01
+$           3.00002E+01
+   y-type =    2            $ y-mesh is linear given by ymin, ymax and ny
+     ymin =  -30.00010      $ minimum value of y-mesh points
+     ymax =   30.00020      $ maximum value of y-mesh points
+$    ydel =   60.00030      $ mesh width of y-mesh points
+       ny =      1          $ number of y-mesh points
+$    data = ( y(i), i = 1, ny + 1 )
+$          -3.00001E+01  3.00002E+01
+   z-type =    2            $ z-mesh is linear given by zmin, zmax and nz
+     zmin =  -35.00010      $ minimum value of z-mesh points
+     zmax =   70.30020      $ maximum value of z-mesh points
+$    zdel =   10.53003      $ mesh width of z-mesh points
+       nz =     10          $ number of z-mesh points
+$    data = ( z(i), i = 1, nz + 1 )
+$          -3.50001E+01 -2.44701E+01 -1.39400E+01 -3.41001E+00  7.12002E+00
+$           1.76500E+01  2.81801E+01  3.87101E+01  4.92401E+01  5.97702E+01
+$           7.03002E+01
+ 
+set: c100[0.0000E+00+5.49255E+09] c101[8.89414E+12]
+
+   part = all     
+    eng =  1
+         1.00000E+05
+
+   xyz                 ww1            
+  (1 1  1)  (5.49255E+09+c100)/c101   
+  (1 1  2)  (1.41992E+10+c100)/c101   
+  (1 1  3)  (2.53033E+10+c100)/c101   
+  (1 1  4)  (3.58923E+10+c100)/c101   
+  (1 1  5)  (3.68993E+10+c100)/c101   
+  (1 1  6)  (2.85441E+10+c100)/c101   
+  (1 1  7)  (1.86625E+10+c100)/c101   
+  (1 1  8)  (1.10318E+10+c100)/c101   
+  (1 1  9)  (5.62165E+09+c100)/c101   
+  (1 1 10)  (1.99427E+09+c100)/c101   
+  (2 1  1)  (1.65025E+10+c100)/c101   
+  (2 1  2)  (4.28627E+10+c100)/c101   
+  (2 1  3)  (8.16985E+10+c100)/c101   
+  (2 1  4)  (1.37216E+11+c100)/c101   
+  (2 1  5)  (1.35979E+11+c100)/c101   
+  (2 1  6)  (9.18514E+10+c100)/c101   
+  (2 1  7)  (5.56028E+10+c100)/c101   
+  (2 1  8)  (3.24271E+10+c100)/c101   
+  (2 1  9)  (1.58911E+10+c100)/c101   
+  (2 1 10)  (5.19223E+09+c100)/c101   
+  (3 1  1)  (8.69433E+12+c100)/c101   
+  (3 1  2)  (8.73279E+12+c100)/c101   
+  (3 1  3)  (8.79971E+12+c100)/c101   
+  (3 1  4)  (3.05239E+12+c100)/c101   
+  (3 1  5)  (2.55541E+11+c100)/c101   
+  (3 1  6)  (1.38787E+11+c100)/c101   
+  (3 1  7)  (7.63666E+10+c100)/c101   
+  (3 1  8)  (4.34341E+10+c100)/c101   
+  (3 1  9)  (2.18950E+10+c100)/c101   
+  (3 1 10)  (6.59037E+09+c100)/c101   
+  (4 1  1)  (1.65075E+10+c100)/c101   
+  (4 1  2)  (4.28781E+10+c100)/c101   
+  (4 1  3)  (8.16426E+10+c100)/c101   
+  (4 1  4)  (1.37455E+11+c100)/c101   
+  (4 1  5)  (1.36107E+11+c100)/c101   
+  (4 1  6)  (9.17860E+10+c100)/c101   
+  (4 1  7)  (5.55395E+10+c100)/c101   
+  (4 1  8)  (3.24023E+10+c100)/c101   
+  (4 1  9)  (1.59054E+10+c100)/c101   
+  (4 1 10)  (5.19278E+09+c100)/c101   
+  (5 1  1)  (5.48421E+09+c100)/c101   
+  (5 1  2)  (1.41875E+10+c100)/c101   
+  (5 1  3)  (2.53226E+10+c100)/c101   
+  (5 1  4)  (3.59044E+10+c100)/c101   
+  (5 1  5)  (3.69543E+10+c100)/c101   
+  (5 1  6)  (2.85641E+10+c100)/c101   
+  (5 1  7)  (1.86600E+10+c100)/c101   
+  (5 1  8)  (1.10246E+10+c100)/c101   
+  (5 1  9)  (5.62274E+09+c100)/c101   
+  (5 1 10)  (1.99552E+09+c100)/c101   
+ 
+# Information for Restart Calculation
+# This calculation was newly started
+# istdev =  2 # 1:Batch variance, 2:History variance
+# resc2  = 1.60230732254525997E-08 # Total source weight or Total source weight / maxcas
+# resc3  = 1.00000000000000000E+08 # Total history number or Total batch number
+# maxcas =      100000 # History / Batch, only used for istdev=1
+# bitrseed = 1101111110010001010110101011011001110100110101001100011110000101 # bit data of rseed
